@@ -27,13 +27,6 @@ static int	program_parser(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-static int	initializer(t_rt **mini)
-{
-	(*mini)->mlx_ptr = NULL;
-	(*mini)->win_ptr = NULL;
-	return (EXIT_SUCCESS);
-}
-
 static int	start_mlx(t_rt *mini)
 {
 	mini->mlx_ptr = mlx_init();
@@ -48,8 +41,8 @@ static int	start_mlx(t_rt *mini)
 	//mlx_loop_hook(mini->mlx_ptr, loop_hook, mini);
 	//mlx_hook(mini->win_ptr, DestroyNotify, 0, close_app, mini);
 	//mlx_hook(mini->win_ptr, KeyPress, 1, key_hook1, mini);
-	//mlx_do_key_autorepeaton(mini->mlx_ptr);
-	//mlx_loop(mini->mlx_ptr);
+	mlx_do_key_autorepeaton(mini->mlx_ptr);
+	mlx_loop(mini->mlx_ptr);
 	return (EXIT_SUCCESS);
 }
 
@@ -57,9 +50,10 @@ int	main(int argc, char **argv)
 {
 	t_rt	*mini;
 
-	if (program_parser(argc, argv))
+	mini = ft_calloc(sizeof(t_rt), 1);
+	if (!mini)
 		return (EXIT_FAILURE);
-	if (initializer(&mini))
+	if (program_parser(argc, argv))
 		return (EXIT_FAILURE);
 	if (start_mlx(mini))
 		return (EXIT_FAILURE);
