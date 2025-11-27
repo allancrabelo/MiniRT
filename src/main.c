@@ -53,9 +53,12 @@ int	main(int argc, char **argv)
 	mini = ft_calloc(sizeof(t_rt), 1);
 	if (!mini)
 		return (EXIT_FAILURE);
-	if (program_parser(argc, argv))
-		return (EXIT_FAILURE);
-	if (start_mlx(mini))
-		return (EXIT_FAILURE);
+	ft_err_handler(mini, program_parser(argc, argv));
+	ft_err_handler(mini, start_mlx(mini));
+	// if (program_parser(argc, argv))
+	// 	return (EXIT_FAILURE);
+	// if (start_mlx(mini))
+	// 	return (EXIT_FAILURE);
+	ft_err_handler(mini, -1);
 	return (EXIT_SUCCESS);
 }

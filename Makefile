@@ -12,7 +12,8 @@ HEADERS		:= $(addprefix ${HEADDIR}, ${HEADLIST})
 VPATH		:=	src \
 
 SRCSLIST	:=	main \
-
+				garbage_collector \
+				error_handler \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 
