@@ -3,7 +3,7 @@
 static void	err_message(int code)
 {
 	if (code > 0)
-		printf("Error:%d\n", code); // change this to a better system
+		printf(BRED "[ERROR %d]\n" RESET, code); // change this to a better system
 }
 
 int	ft_err_handler(t_rt *mini, int code)

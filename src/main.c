@@ -15,15 +15,9 @@ static int	extension_checker(char **argv)
 static int	program_parser(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_putstr_fd(BRED "[USAGE ERROR]: ./miniRT <Map>\n" RESET, 2);
-		return (EXIT_FAILURE);
-	}
+		return (ERR_USAGE);
 	if (extension_checker(argv))
-	{
-		ft_putstr_fd(BRED "[EXTENSION ERROR]: Must be .rt\n" RESET, 2);
-		return (EXIT_FAILURE);
-	}
+		return (ERR_EXTENSION);
 	return (EXIT_SUCCESS);
 }
 
@@ -31,10 +25,10 @@ static int	start_mlx(t_rt *mini)
 {
 	mini->mlx_ptr = mlx_init();
 	if (mini->mlx_ptr == NULL)
-		return(ft_printf(BRED "Failed connection with server\n" RESET, 2), 1);
+		return(ERR_MLX_INIT); //TODO: Change Remove this from here
 	mini->win_ptr = mlx_new_window(mini->mlx_ptr, WIN_W, WIN_H, "miniRT");
 	if (mini->win_ptr == NULL)
-		return (ft_printf(BRED "Failed to create a new window\n" RESET, 2), 1);
+		return (ERR_MLX_WIN); //TODO: Change Remove this from here
 	//mini->img.mlx_img = mlx_new_image(mini->mlx_ptr, WIN_W, WIN_H);
 	//mini->img.addr = mlx_get_data_addr(mini->img.mlx_img, &mini->img.bpp,
 				//&mini->img.line_len, &mini->img.endian);
@@ -54,11 +48,8 @@ int	main(int argc, char **argv)
 	if (!mini)
 		return (EXIT_FAILURE);
 	ft_err_handler(mini, program_parser(argc, argv));
+	
 	ft_err_handler(mini, start_mlx(mini));
-	// if (program_parser(argc, argv))
-	// 	return (EXIT_FAILURE);
-	// if (start_mlx(mini))
-	// 	return (EXIT_FAILURE);
 	ft_err_handler(mini, -1);
 	return (EXIT_SUCCESS);
 }

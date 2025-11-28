@@ -1,6 +1,7 @@
 #ifndef COLORS_H
 # define COLORS_H
 
+									//CHANGE BINARY NAME WHEN PROJECT IS DONE!!!!
 // Basic Colors
 # define BLACK			"\033[0;30m"
 # define RED			"\033[0;31m"

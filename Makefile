@@ -1,4 +1,4 @@
-NAME		:= miniRT
+NAME		:= rt#CHANGE
 CC			:= cc
 RM			:= rm -f
 
@@ -77,7 +77,7 @@ fclean: clean
 re: fclean all
 
 download:
-	@if [ ! -d "$(MLX_DIR)" ]; then \
+	@if [ ! -d "$(MLX_DIR)/.git" ]; then \
 		git submodule update --init --recursive; \
 		printf "${YELLOW}MLX submodule initialized ...${RESET}\n"; \
 	fi

@@ -14,17 +14,12 @@
 # include "colors.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include "error.h"
 // Macros
 # define WIN_W 1280
 # define WIN_H 720
 
 // Structures
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-}	t_bool;
-
 
 typedef struct s_gc
 {
