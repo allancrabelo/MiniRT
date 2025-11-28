@@ -1,5 +1,6 @@
 .vscode/
 miniRT
+minilibx/
 *.o
 *.swp
 *.sh
