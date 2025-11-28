@@ -3,3 +3,5 @@ miniRT
 *.o
 *.swp
 *.sh
+libft.a
+rt

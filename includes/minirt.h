@@ -21,6 +21,22 @@
 
 // Structures
 
+typedef enum e_token_type
+{
+	ERROR,
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+}	t_token_type;
+typedef struct	s_token
+{
+	t_token_type	type;
+	char			*content;
+}	t_token;
+
 typedef struct s_gc
 {
 	void			*ptr;

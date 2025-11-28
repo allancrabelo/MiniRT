@@ -12,12 +12,49 @@ static int	extension_checker(char **argv)
 	return (EXIT_FAILURE);
 }
 
-static int	program_parser(int argc, char **argv)
+static int	file_parser(t_rt *mini, int fd)
+{
+
+}
+
+static int	file_is_empty(t_rt *mini, char *file)
+{
+	int		fd;
+	char	c;
+	ssize_t	byte;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ERR_FILE_OPEN);
+	byte = read(fd, &c, 1);
+	close(fd);
+	if (byte < 0)
+		return (ERR_FILE_READ);
+	if (byte == 0)
+		return (ERR_FILE_EMPTY);
+	return (EXIT_SUCCESS);
+}
+
+static int	file_init(t_rt *mini, char *file)
+{
+	int	fd;
+	int	status;
+
+	ft_err_handler(mini, file_is_empty(mini, file));
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ERR_FILE_OPEN);
+	ft_err_handler(mini, file_parser(mini, fd));
+	return (EXIT_SUCCESS);
+}
+
+static int	program_parser(t_rt *mini, int argc, char **argv)
 {
 	if (argc != 2)
 		return (ERR_USAGE);
 	if (extension_checker(argv))
 		return (ERR_EXTENSION);
+	ft_err_handler(mini, file_init(mini, argv[1]));
 	return (EXIT_SUCCESS);
 }
 
@@ -47,8 +84,7 @@ int	main(int argc, char **argv)
 	mini = ft_calloc(sizeof(t_rt), 1);
 	if (!mini)
 		return (EXIT_FAILURE);
-	ft_err_handler(mini, program_parser(argc, argv));
-	
+	ft_err_handler(mini, program_parser(mini, argc, argv));
 	ft_err_handler(mini, start_mlx(mini));
 	ft_err_handler(mini, -1);
 	return (EXIT_SUCCESS);
