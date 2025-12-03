@@ -38,7 +38,8 @@ void	gc_free_one(t_rt *rt, void *ptr)
 				prev->next = cur->next;
 			else
 				rt->gc = cur->next;
-			free(cur->ptr);
+			if (cur->ptr)
+				free(cur->ptr);
 			free(cur);
 			return;
 		}
@@ -48,7 +49,7 @@ void	gc_free_one(t_rt *rt, void *ptr)
 }
 
 // Used to free all allocated memory
-void	gc_free_all(t_rt *rt)
+int	gc_free_all(t_rt *rt)
 {
 	t_gc	*cur;
 	t_gc	*next;
@@ -57,7 +58,8 @@ void	gc_free_all(t_rt *rt)
 	while (cur)
 	{
 		next = cur->next;
-		free(cur->ptr);
+		if (cur->ptr)
+			free(cur->ptr);
 		free(cur);
 		cur = next;
 	}

@@ -1,8 +1,9 @@
 .vscode/
 miniRT
 minilibx/
+libft.a
 *.o
 *.swp
 *.sh
-libft.a
+*.rt
 rt

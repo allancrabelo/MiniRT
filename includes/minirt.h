@@ -55,7 +55,7 @@ typedef struct s_rt
 // Garbage collector and error handler
 void	*gc_calloc(t_rt *mini, size_t size);
 void	gc_free_one(t_rt *rt, void *ptr);
-void	gc_free_all(t_rt *rt);
+int		gc_free_all(t_rt *rt);
 int		ft_err_handler(t_rt *mini, int code);
 
 

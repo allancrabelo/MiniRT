@@ -28,7 +28,7 @@ int	ft_err_handler(t_rt *mini, int code)
 		return (0);
 	if (mini && mini->mlx_ptr)
 		mlx_destroy_display(mini->mlx_ptr);
-	if (mini && mini->win_ptr)
+	if (mini && mini->win_ptr) // FIXME: Not working rn, intended
 		mlx_destroy_display(mini->win_ptr);
 	gc_free_all(mini);
 	if (mini)
