@@ -3,7 +3,7 @@
 static void	err_message_parsing(int code)
 {
 	if (code == ERR_USAGE)
-		ft_putstr_fd("Usage: ./miniRT <Map>", 2);
+		ft_putstr_fd("Usage: ./miniRT scenes/<Map>", 2);
 	if (code == ERR_EXTENSION)
 		ft_putstr_fd("Extention Error, file type must be .rt", 2);
 }

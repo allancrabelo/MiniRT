@@ -12,12 +12,12 @@ static int	extension_checker(char **argv)
 	return (EXIT_FAILURE);
 }
 
-static int	file_parser(t_rt *mini, int fd)
+/* static int	file_parser(t_rt *mini, int fd)
 {
 	(void)mini;
 	(void)fd;
 	return (EXIT_SUCCESS);
-}
+} */
 
 static int	file_is_empty(t_rt *mini, char *file)
 {
@@ -41,7 +41,7 @@ static int	file_is_empty(t_rt *mini, char *file)
 static int	file_init(t_rt *mini, char *file)
 {
 	int	fd;
-	int	status;
+	//int	status;
 
 	ft_err_handler(mini, file_is_empty(mini, file));
 	fd = open(file, O_RDONLY);

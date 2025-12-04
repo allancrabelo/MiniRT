@@ -49,7 +49,7 @@ void	gc_free_one(t_rt *rt, void *ptr)
 }
 
 // Used to free all allocated memory
-int	gc_free_all(t_rt *rt)
+void	gc_free_all(t_rt *rt)
 {
 	t_gc	*cur;
 	t_gc	*next;
