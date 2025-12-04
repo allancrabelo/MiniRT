@@ -52,6 +52,18 @@ typedef struct s_rt
 
 // Function Prototypes
 
+// [Parsing]:
+int	program_parser(t_rt *mini, int argc, char **argv);
+int	extension_checker(char **argv);
+int	file_is_empty(t_rt *mini, char *file);
+
+// [Initializer]:
+int	file_init(t_rt *mini, char *file);
+
+// [Hooks];
+int	key_hook(int keysym, t_rt *mini);
+int	close_hook(t_rt *mini);
+
 // Garbage collector and error handler
 void	*gc_calloc(t_rt *mini, size_t size);
 void	gc_free_one(t_rt *rt, void *ptr);

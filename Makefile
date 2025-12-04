@@ -11,11 +11,15 @@ HEADERS		:= $(addprefix ${HEADDIR}, ${HEADLIST})
 
 VPATH		:=	src \
 				src/error \
-				src/garbage_collector
+				src/garbage_collector \
+				src/parsing \
+				src/hooking
 
 SRCSLIST	:=	main \
+				error_handler \
 				garbage_collector \
-				error_handler
+				parser \
+				hooks
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 
