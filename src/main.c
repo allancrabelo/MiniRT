@@ -3,13 +3,12 @@
 int	file_init(t_rt *mini, char *file)
 {
 	int	fd;
-	//int	status;
 
 	ft_err_handler(mini, file_is_empty(mini, file));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (ERR_FILE_OPEN);
-	//ft_err_handler(mini, file_parser(mini, fd));
+	ft_err_handler(mini, file_parser(mini, fd));
 	return (EXIT_SUCCESS);
 }
 
@@ -39,6 +38,7 @@ int	main(int argc, char **argv)
 	if (!mini)
 		return (EXIT_FAILURE);
 	ft_err_handler(mini, program_parser(mini, argc, argv));
+	//initializer
 	ft_err_handler(mini, start_mlx(mini));
 	ft_err_handler(mini, -1);
 	return (EXIT_SUCCESS);

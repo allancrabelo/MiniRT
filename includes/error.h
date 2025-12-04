@@ -18,4 +18,13 @@
 # define ERR_MLX_WIN			201
 # define ERR_MLX_IMG			202
 
+// Elements
+# define ERR_RESOLUTION_PARAM	301
+# define ERR_OVER_AMBIENTS		302
+# define ERR_AMBIENT_PARAM		303
+# define ERR_INVALID_COLOR		304
+
+// Type
+# define ERR_NOT_FLOAT			401
+
 #endif

@@ -12,14 +12,22 @@ HEADERS		:= $(addprefix ${HEADDIR}, ${HEADLIST})
 VPATH		:=	src \
 				src/error \
 				src/garbage_collector \
+				src/hooking \
 				src/parsing \
-				src/hooking
+				src/utils \
 
 SRCSLIST	:=	main \
 				error_handler \
 				garbage_collector \
+				hooks \
+				element_parser \
+				file_parser \
 				parser \
-				hooks
+				scene_parser \
+				array_utils \
+				color_utils \
+				conversion_utils \
+				type_utils \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 
