@@ -23,9 +23,9 @@ int	resolution_parser(t_rt *mini, char *line)
 
 int	ambient_parser(t_rt *mini, char *line)
 {
+	t_ambient	ambient;
 	int			i;
 	char		**parameters;
-	t_ambient	ambient;
 
 	i = 0;
 	parameters = ft_split(line, ' ');
@@ -35,7 +35,7 @@ int	ambient_parser(t_rt *mini, char *line)
 		return (ft_err_handler(mini, ERR_AMBIENT_PARAM));
 	ft_bzero(&ambient, sizeof(t_ambient));
 	ambient.id = OBJ_AMBIENT;
-	while (parameters && parameters[++i]  != NULL)
+	while (parameters && parameters[++i] != NULL)
 	{
 		mini->parameter_nbr = i;
 		if (i == 1 && float_parser(parameters[i], &ambient.lighting))
@@ -50,8 +50,8 @@ int	ambient_parser(t_rt *mini, char *line)
 
 int	camera_parser(t_rt *mini, char *line, int i)
 {
-	char		**parameters;
 	t_camera	camera;
+	char		**parameters;
 
 	parameters = ft_split(line, ' ');
 	if (mini->camera.id)
@@ -77,3 +77,27 @@ int	camera_parser(t_rt *mini, char *line, int i)
 	return (EXIT_SUCCESS);
 }
 
+int	light_parser(t_rt *mini, char *line)
+{
+	t_light		*light;
+	char		**parameters;
+	int			i;
+
+	i = 0;
+	parameters = ft_split(line, ' ');
+	if (array_size(parameters) != 4)
+		return (ft_err_handler(mini, ERR_LIGHT_PARAM));
+	light = light_generator(mini);
+	while (parameters && parameters[++i] != NULL)
+	{
+		mini->parameter_nbr = i;
+		if (i == 1 && vector_parser(parameters[i], &light->coordinates))
+			return (ft_err_handler(mini, ERR_INVALID_COORD));
+		if (i == 2 && float_parser(parameters[i], &light->brightness))
+			return (ft_err_handler(mini, ERR_NOT_FLOAT));
+		if (i == 3 && color_parser(parameters[i], &light->color))
+			return (ft_err_handler(mini, ERR_INVALID_COLOR));
+	}
+	free_array(parameters);
+	return (EXIT_SUCCESS);
+}

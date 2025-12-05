@@ -15,6 +15,7 @@ typedef enum e_object_type
 	OBJ_TORUS
 }	t_object_type;
 
+
 typedef struct s_vector
 {
 	float	X;
@@ -49,6 +50,15 @@ typedef struct s_colors
 	t_color	refractive;
 	int		shadows;
 }	t_colors;
+
+typedef struct s_light
+{
+	t_object_type	id;
+	t_color			color;
+	t_vector		coordinates;
+	float			brightness;
+	struct s_light	*next;
+}	t_light;
 
 typedef struct s_ambient
 {

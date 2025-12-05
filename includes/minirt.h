@@ -57,6 +57,7 @@ typedef struct s_rt
 	float		height;
 	t_ambient	ambient;
 	t_camera	camera;
+	t_light		*light;
 
 }	t_rt;
 
@@ -69,6 +70,7 @@ int			file_is_empty(t_rt *mini, char *file);
 int			file_parser(t_rt *mini, int fd);
 int			element_dispatcher(t_rt *mini, char *line);
 int			vector_parser(char *str, t_vector *vector);
+int			light_parser(t_rt *mini, char *line);
 
 // [Initializer]:
 int			file_init(t_rt *mini, char *file);
@@ -94,6 +96,9 @@ float		vector_length(t_vector vector);
 // [Camera]:
 t_vector	*camera_normalizer(t_vector *vector);
 int			camera_parser(t_rt *mini, char *line, int i);
+
+// [Light]:
+t_light		*light_generator(t_rt *mini);
 
 // Garbage collector and error handler
 void		*gc_calloc(t_rt *mini, size_t size);
