@@ -15,6 +15,24 @@ typedef enum e_object_type
 	OBJ_TORUS
 }	t_object_type;
 
+typedef struct s_vector
+{
+	float	X;
+	float	Y;
+	float	Z;
+}	t_vector;
+
+
+typedef struct s_camera
+{
+	t_object_type	id;
+	t_vector		coordinates;
+	t_vector		orientation;
+	size_t			fov;
+	float			scale;
+}	t_camera;
+
+
 typedef struct s_color
 {
 	float	R;

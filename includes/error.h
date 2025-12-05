@@ -23,8 +23,14 @@
 # define ERR_OVER_AMBIENTS		302
 # define ERR_AMBIENT_PARAM		303
 # define ERR_INVALID_COLOR		304
+# define ERR_OVER_CAMERAS		305
+# define ERR_CAMERA_PARAM		306
+# define ERR_INVALID_COORD		307
+# define ERR_INVALID_ORIENT		308
+
 
 // Type
 # define ERR_NOT_FLOAT			401
+# define ERR_NOT_ULONG			402
 
 #endif

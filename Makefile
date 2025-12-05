@@ -10,6 +10,7 @@ HEADLIST	:= minirt.h
 HEADERS		:= $(addprefix ${HEADDIR}, ${HEADLIST})
 
 VPATH		:=	src \
+				src/camera \
 				src/error \
 				src/garbage_collector \
 				src/hooking \
@@ -17,6 +18,7 @@ VPATH		:=	src \
 				src/utils \
 
 SRCSLIST	:=	main \
+				camera \
 				error_handler \
 				garbage_collector \
 				hooks \
@@ -24,10 +26,12 @@ SRCSLIST	:=	main \
 				file_parser \
 				parser \
 				scene_parser \
+				vector_parser \
 				array_utils \
 				color_utils \
 				conversion_utils \
 				type_utils \
+				vector_utils \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 
