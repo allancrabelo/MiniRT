@@ -19,6 +19,7 @@
 # define ERR_MLX_IMG			202
 
 // Elements
+# define ERR_INVALID_PARAM		300
 # define ERR_RESOLUTION_PARAM	301
 # define ERR_OVER_AMBIENTS		302
 # define ERR_AMBIENT_PARAM		303

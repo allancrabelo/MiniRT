@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-static char	*line_cleanner(char *line)
+static char	*line_cleaner(char *line)
 {
 	char	*new_line;
 	int		i;
@@ -20,24 +20,27 @@ static char	*line_cleanner(char *line)
 
 int	file_parser(t_rt *mini, int fd)
 {
-	int		ret;
+	int		err;
 	int		nbr;
 	char	*line;
 
-	ret = 0;
 	nbr = 0;
-	while (ret != 1)
+	while (1)
 	{
 		nbr++;
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		line = line_cleanner(line);
+		line = line_cleaner(line);
 		mini->line_nbr = nbr;
-		if (element_dispatcher(mini, line))
-			ret = 1;
+		err = element_dispatcher(mini, line);
+		if (err)
+		{
+			free(line);
+			ft_err_handler(mini, err);
+		}
 		free (line);
 	}
 	close (fd);
-	return (ret);
+	return (EXIT_SUCCESS);
 }

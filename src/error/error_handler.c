@@ -36,6 +36,8 @@ static void	err_message_mlx(int code)
 
 static void	err_message_elements(int code)
 {
+	if (code == ERR_INVALID_PARAM)
+		ft_putstr_fd("Element error: invalid parameter detected\n", 2);
 	if (code == ERR_RESOLUTION_PARAM)
 		ft_putstr_fd("Element error: invalid resolution parameter\n", 2);
 	else if (code == ERR_OVER_AMBIENTS)

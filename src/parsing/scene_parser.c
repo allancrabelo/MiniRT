@@ -10,5 +10,5 @@ int	element_dispatcher(t_rt *mini, char *line)
 		return (resolution_parser(mini, line));
 	if (ft_strncmp(line, "L", 1) == 0)
 		return (light_parser(mini, line));
-	return (EXIT_SUCCESS);
+	return (ERR_INVALID_PARAM);
 }
