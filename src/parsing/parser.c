@@ -1,22 +1,42 @@
 #include "minirt.h"
 
-int	file_is_empty(t_rt *mini, char *file)
+static int	contains_non_whitespace(char *buf, ssize_t bytes)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < (size_t)bytes)
+	{
+		if (!ft_isspace((int)buf[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	file_is_empty(char *file)
 {
 	int		fd;
-	char	c;
-	ssize_t	byte;
+	char	buf[1024];
+	ssize_t	bytes;
 
-	(void)mini;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (ERR_FILE_OPEN);
-	byte = read(fd, &c, 1);
+	bytes = read(fd, buf, sizeof(buf));
+	while (bytes > 0)
+	{
+		if (contains_non_whitespace(buf, bytes))
+		{
+			close(fd);
+			return (EXIT_SUCCESS);
+		}
+		bytes = read(fd, buf, sizeof(buf));
+	}
 	close(fd);
-	if (byte < 0)
+	if (bytes < 0)
 		return (ERR_FILE_READ);
-	if (byte == 0)
-		return (ERR_FILE_EMPTY);
-	return (EXIT_SUCCESS);
+	return (ERR_FILE_EMPTY);
 }
 
 int	extension_checker(char **argv)

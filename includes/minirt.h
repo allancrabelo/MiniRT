@@ -34,7 +34,7 @@ typedef enum e_token_type
 	CYLINDER,
 }	t_token_type;
 
-typedef struct	s_token
+typedef struct s_token
 {
 	t_token_type	type;
 	char			*content;
@@ -66,7 +66,7 @@ typedef struct s_rt
 // [Parsing]:
 int			program_parser(t_rt *mini, int argc, char **argv);
 int			extension_checker(char **argv);
-int			file_is_empty(t_rt *mini, char *file);
+int			file_is_empty(char *file);
 int			file_parser(t_rt *mini, int fd);
 int			element_dispatcher(t_rt *mini, char *line);
 int			vector_parser(char *str, t_vector *vector);

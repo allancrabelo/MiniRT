@@ -8,7 +8,7 @@ int	resolution_parser(t_rt *mini, char *line)
 	i = 0;
 	parameters = ft_split(line, ' ');
 	if (array_size(parameters) != 3)
-		return(ft_err_handler(mini, ERR_RESOLUTION_PARAM));
+		return (ft_err_handler(mini, ERR_RESOLUTION_PARAM));
 	while (parameters && parameters[++i] != NULL)
 	{
 		mini->parameter_nbr = i;

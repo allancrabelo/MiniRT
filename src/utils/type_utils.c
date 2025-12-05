@@ -14,7 +14,7 @@ int	is_ulong(char *str)
 	return (EXIT_FAILURE);
 }
 
-int is_float(char *str)
+int	is_float(char *str)
 {
 	int	i;
 

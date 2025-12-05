@@ -5,6 +5,6 @@ libft.a
 *.o
 *.swp
 *.sh
-*.rt
 *.pdf
+#*.rt
 rt

@@ -1,7 +1,7 @@
 #include "minirt.h"
 
-
-// Allocates the requested memory and redirects the pointer to the garbage collector
+// Allocates the requested memory and
+// redirects the pointer to the garbage collector
 void	*gc_calloc(t_rt *mini, size_t size)
 {
 	void	*ptr;
@@ -41,7 +41,7 @@ void	gc_free_one(t_rt *rt, void *ptr)
 			if (cur->ptr)
 				free(cur->ptr);
 			free(cur);
-			return;
+			return ;
 		}
 		prev = cur;
 		cur = cur->next;

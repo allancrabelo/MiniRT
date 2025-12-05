@@ -4,7 +4,7 @@ int	file_init(t_rt *mini, char *file)
 {
 	int	fd;
 
-	ft_err_handler(mini, file_is_empty(mini, file));
+	ft_err_handler(mini, file_is_empty(file));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (ERR_FILE_OPEN);
@@ -16,7 +16,7 @@ static int	start_mlx(t_rt *mini)
 {
 	mini->mlx_ptr = mlx_init();
 	if (mini->mlx_ptr == NULL)
-		return(ERR_MLX_INIT); //TODO: Change Remove this from here
+		return (ERR_MLX_INIT); //TODO: Change Remove this from here
 	mini->win_ptr = mlx_new_window(mini->mlx_ptr, WIN_W, WIN_H, "miniRT");
 	if (mini->win_ptr == NULL)
 		return (ERR_MLX_WIN); //TODO: Change Remove this from here

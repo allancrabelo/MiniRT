@@ -25,22 +25,18 @@ int	file_parser(t_rt *mini, int fd)
 	char	*line;
 
 	nbr = 0;
-	while (1)
+	err = 0;
+	while (!err)
 	{
 		nbr++;
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		line = line_cleaner(line);
-		mini->line_nbr = nbr;
 		err = element_dispatcher(mini, line);
-		if (err)
-		{
-			free(line);
-			ft_err_handler(mini, err);
-		}
 		free (line);
 	}
+	mini->line_nbr = nbr;
 	close (fd);
-	return (EXIT_SUCCESS);
+	return (err);
 }

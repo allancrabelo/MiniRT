@@ -5,8 +5,8 @@ t_vector	*camera_normalizer(t_vector *vector)
 	float	normal;
 
 	normal = 1 / vector_length(*vector);
-	vector->X *= normal;
-	vector->Y *= normal;
-	vector->Z *= normal;
+	vector->x *= normal;
+	vector->y *= normal;
+	vector->z *= normal;
 	return (vector);
 }

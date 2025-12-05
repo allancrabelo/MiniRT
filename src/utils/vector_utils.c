@@ -7,10 +7,9 @@ float	vector_length(t_vector vector)
 	float	len_z;
 	float	total;
 
-	len_x = vector.X * vector.X;
-	len_y = vector.Y * vector.Y;
-	len_z = vector.Z * vector.Z;
-
+	len_x = vector.x * vector.x;
+	len_y = vector.y * vector.y;
+	len_z = vector.z * vector.z;
 	total = len_x + len_y + len_z;
 	return (sqrt(total));
 }
