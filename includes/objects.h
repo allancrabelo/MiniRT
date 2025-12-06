@@ -3,6 +3,8 @@
 
 // [Objects Macros]:
 # define SPHERE_PARAM 4
+# define PLANE_PARAM 4
+# define CYLINDER_PARAM 6
 
 // Shapes Default:
 # define DEFAULT_SPECULAR_INTENSITY 0.5
@@ -78,8 +80,18 @@ typedef struct s_ambient
 
 typedef struct s_img
 {
-	void	*image;
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_img;
+
+typedef struct s_ray
+{
+	t_vector	origin;
+	t_vector	direction;
+}	t_ray;
 
 typedef	struct s_sphere
 {
@@ -90,9 +102,31 @@ typedef	struct s_sphere
 
 }	t_sphere;
 
+typedef struct s_plane
+{
+	t_object_type	id;
+	t_vector		coordinates;
+	t_vector		orientation;
+	t_color			color;
+
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	t_object_type	id;
+	t_vector		coordinates;
+	t_vector		orientation;
+	float			diameter;
+	float			height;
+	t_color			color;
+
+}	t_cylinder;
+
 typedef union u_object_hub
 {
 	t_sphere		sphere;
+	t_plane			plane;
+	t_cylinder		cylinder;
 
 }	t_object_hub;
 
@@ -116,5 +150,14 @@ typedef struct s_obj
 	t_color			second_color;
 	struct s_obj	*next;
 }	t_obj;
+
+typedef struct s_hit
+{
+	float		t;
+	t_vector	point;
+	t_vector	normal;
+	t_obj		*object;
+	bool		hit;
+}	t_hit;
 
 #endif

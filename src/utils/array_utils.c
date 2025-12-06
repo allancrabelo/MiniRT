@@ -7,8 +7,11 @@ void	free_array(char **arr)
 	if (!arr)
 		return ;
 	i = 0;
-	while (arr[i++])
-		free(arr[i++]);
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
 	free(arr);
 }
 

@@ -2,8 +2,7 @@ NAME		:= rt
 CC			:= cc
 RM			:= rm -f
 
-CFLAGS		:= -Wall -Wextra -Werror
-DEBUGFLAGS	:= -g
+CFLAGS		:= -Wall -Wextra -Werror -Wno-error=cast-function-type
 
 HEADDIR		:= ./includes/
 HEADLIST	:= minirt.h
@@ -17,6 +16,7 @@ VPATH		:=	src \
 				src/light \
 				src/objects \
 				src/parsing \
+				src/rendering \
 				src/utils \
 
 SRCSLIST	:=	main \
@@ -32,11 +32,17 @@ SRCSLIST	:=	main \
 				scene_parser \
 				shapes_parser \
 				vector_parser \
+				render \
+				intersect \
+				intersect_cylinder \
+				ray_trace \
 				array_utils \
 				color_utils \
 				conversion_utils \
 				type_utils \
 				vector_utils \
+				vector_math \
+				vector_math2 \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 

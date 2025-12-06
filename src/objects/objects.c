@@ -28,9 +28,9 @@ t_obj	*object_generator(t_rt *mini, t_object_type id)
 	object->pattern_scale = DEFAULT_PATTERN_SCALE;
 	object->pattern_type = DEFAULT_PATTERN_TYPE;
 	object->has_bump = false;
-	object->texture.image = NULL;
+	object->texture.mlx_img = NULL;
 	object->has_texture = false;
-	object->bump.image = NULL;
+	object->bump.mlx_img = NULL;
 	object_pusher(object, &mini->objects);
 	mini->number_of_objects++;
 	return (object);

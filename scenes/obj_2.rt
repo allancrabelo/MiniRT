@@ -1,0 +1,30 @@
+# The Basic Shapes 02
+
+# Ambient Light
+A   0.1                                 255,255,255
+
+# Camera
+# <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
+
+# Light
+#
+L  0,100,50                 1         255,255,255
+
+
+# Plane 
+# <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue> <reflection: 0.0> <patern_type: checkered, striped_at> <color1:red,green,blue> <color2:red,green,blue>
+# pl  0,0,0            0,1,0       255,229,229  0  checkered  0,0,0  255,255,255
+pl  0,0,0            0,1,0       255,255,255 1 checkered  0,0,0  255,255,255
+# sp  0,1,0                      1           200,200,200 
+
+
+
+# # Objects 3d
+# # obj <coordinates: x,y,z> <orientation: x,y,z>  file_name
+obj 0,1,-50   255,229,229   ./texture/tree.obj
+
+obj 25,1,-25 ./texture/tree.obj
+
+obj -25,1,-35   ./texture/tree.obj
+
+obj 0,0,20    ./texture/house2.obj

@@ -22,3 +22,53 @@ int	sphere_parser(t_rt *mini, char **parameters, t_obj *objects)
 	return (EXIT_SUCCESS);
 }
 
+int	plane_parser(t_rt *mini, char **parameters, t_obj *objects)
+{
+	t_plane		plane;
+	int			i;
+
+	i = 0;
+	ft_bzero(&plane, sizeof(t_plane));
+	while (parameters && parameters[++i])
+	{
+		mini->parameter_nbr = i;
+		if (i == 1 && vector_parser(parameters[i], &objects->coordinates))
+			return (ft_err_handler(mini, ERR_INVALID_COORD));
+		if (i == 2 && vector_parser(parameters[i], &plane.orientation))
+			return (ft_err_handler(mini, ERR_INVALID_ORIENT));
+		if (i == 3 && colors_parser(parameters[i], &objects->primary_color, &objects->second_color))
+			return (ft_err_handler(mini, ERR_INVALID_COLOR));
+	}
+	plane.coordinates = objects->coordinates;
+	camera_normalizer(&plane.orientation);
+	objects->objects.plane = plane;
+	return (EXIT_SUCCESS);
+}
+
+int	cylinder_parser(t_rt *mini, char **parameters, t_obj *objects)
+{
+	t_cylinder	cylinder;
+	int			i;
+
+	i = 0;
+	ft_bzero(&cylinder, sizeof(t_cylinder));
+	while (parameters && parameters[++i])
+	{
+		mini->parameter_nbr = i;
+		if (i == 1 && vector_parser(parameters[i], &objects->coordinates))
+			return (ft_err_handler(mini, ERR_INVALID_COORD));
+		if (i == 2 && vector_parser(parameters[i], &cylinder.orientation))
+			return (ft_err_handler(mini, ERR_INVALID_ORIENT));
+		if (i == 3 && float_parser(parameters[i], &cylinder.diameter))
+			return (ft_err_handler(mini, ERR_NOT_FLOAT));
+		if (i == 4 && float_parser(parameters[i], &cylinder.height))
+			return (ft_err_handler(mini, ERR_NOT_FLOAT));
+		if (i == 5 && colors_parser(parameters[i], &objects->primary_color, &objects->second_color))
+			return (ft_err_handler(mini, ERR_INVALID_COLOR));
+	}
+	cylinder.coordinates = objects->coordinates;
+	camera_normalizer(&cylinder.orientation);
+	objects->objects.cylinder = cylinder;
+	return (EXIT_SUCCESS);
+}
+

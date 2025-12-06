@@ -52,15 +52,18 @@ typedef struct s_rt
 	t_gc		*gc;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_img		img;
 	int			line_nbr;
 	int			parameter_nbr;
 	float		width;
 	float		height;
 	t_ambient	ambient;
 	t_camera	camera;
+	t_camera	initial_camera;
 	t_light		*light;
 	size_t		number_of_objects;
 	t_obj		*objects;
+	int			render_quality;
 
 }	t_rt;
 
@@ -79,8 +82,8 @@ int			light_parser(t_rt *mini, char *line);
 int			file_init(t_rt *mini, char *file);
 
 // [Hooks];
-int			key_hook(int keysym, t_rt *mini);
-int			close_hook(t_rt *mini);
+int			key_hook(int keysym, void *param);
+int			close_hook(void *param);
 
 // [Utils]:
 int			array_size(char	**arr);
@@ -97,6 +100,27 @@ int			ft_atoc(char *str);
 int			is_float(char *str);
 float		vector_length(t_vector vector);
 
+// [Vector Math]:
+t_vector	vector_add(t_vector a, t_vector b);
+t_vector	vector_sub(t_vector a, t_vector b);
+t_vector	vector_mult(t_vector v, float scalar);
+t_vector	vector_div(t_vector v, float scalar);
+float		vector_dot(t_vector a, t_vector b);
+t_vector	vector_cross(t_vector a, t_vector b);
+t_vector	vector_normalize(t_vector v);
+
+// [Rendering]:
+void		render_scene(t_rt *mini);
+void		render_scene_quality(t_rt *mini, int quality);
+t_color		ray_color(t_rt *mini, t_ray ray);
+t_hit		intersect_scene(t_rt *mini, t_ray ray);
+t_hit		intersect_sphere(t_ray ray, t_obj *obj);
+t_hit		intersect_plane(t_ray ray, t_obj *obj);
+t_hit		intersect_cylinder(t_ray ray, t_obj *obj);
+t_color		calculate_lighting(t_rt *mini, t_hit hit, t_ray ray);
+int			create_trgb(int t, int r, int g, int b);
+void		img_pix_put(t_img *img, int x, int y, int color);
+
 // [Camera]:
 t_vector	*camera_normalizer(t_vector *vector);
 int			camera_parser(t_rt *mini, char *line, int i);
@@ -107,6 +131,8 @@ t_light		*light_generator(t_rt *mini);
 // [Objects]:
 t_obj	*object_generator(t_rt *mini, t_object_type id);
 int		sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
+int		plane_parser(t_rt *mini, char **parameters, t_obj *objects);
+int		cylinder_parser(t_rt *mini, char **parameters, t_obj *objects);
 
 // Garbage collector and error handler
 void		*gc_calloc(t_rt *mini, size_t size);
