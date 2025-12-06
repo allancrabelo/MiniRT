@@ -11,14 +11,15 @@
 # include <sys/time.h>	// Gettimeofday
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdbool.h>
 
+# include "objects.h"
 # include "colors.h"
 # include "error.h"
-# include "objects.h"
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 
-// Macros
+// Window Macros:
 # define WIN_W 1280
 # define WIN_H 720
 
@@ -49,8 +50,8 @@ typedef struct s_gc
 typedef struct s_rt
 {
 	t_gc		*gc;
-	void		*mlx_ptr; // mlx pointers
-	void		*win_ptr; // mlx pointers
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			line_nbr;
 	int			parameter_nbr;
 	float		width;
@@ -58,6 +59,8 @@ typedef struct s_rt
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		*light;
+	size_t		number_of_objects;
+	t_obj		*objects;
 
 }	t_rt;
 
@@ -88,6 +91,7 @@ int			ambient_parser(t_rt *mini, char *line);
 int			resolution_parser(t_rt *mini, char *line);
 float		ft_atof(char *str);
 int			color_parser(char *str, t_color *color);
+int			colors_parser(char *str, t_color *primary_color, t_color *second_color);
 int			is_ulong(char *str);
 int			ft_atoc(char *str);
 int			is_float(char *str);
@@ -99,6 +103,10 @@ int			camera_parser(t_rt *mini, char *line, int i);
 
 // [Light]:
 t_light		*light_generator(t_rt *mini);
+
+// [Objects]:
+t_obj	*object_generator(t_rt *mini, t_object_type id);
+int		sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
 
 // Garbage collector and error handler
 void		*gc_calloc(t_rt *mini, size_t size);

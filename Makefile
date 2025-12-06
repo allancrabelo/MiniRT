@@ -15,6 +15,7 @@ VPATH		:=	src \
 				src/garbage_collector \
 				src/hooking \
 				src/light \
+				src/objects \
 				src/parsing \
 				src/utils \
 
@@ -24,6 +25,7 @@ SRCSLIST	:=	main \
 				garbage_collector \
 				hooks \
 				light \
+				objects \
 				element_parser \
 				file_parser \
 				parser \

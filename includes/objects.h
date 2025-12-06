@@ -1,6 +1,17 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
+// [Objects Macros]:
+# define SPHERE_PARAM 4
+
+// Shapes Default:
+# define DEFAULT_SPECULAR_INTENSITY 0.5
+# define DEFAULT_SPECULAR_EXPONENT 20
+# define DEFAULT_REFLECTIVITY 0.0
+# define DEFAULT_REFRACTIVE_INDEX 0.0
+# define DEFAULT_PATTERN_SCALE 0.0
+# define DEFAULT_PATTERN_TYPE 0
+
 typedef enum e_object_type
 {
 	OBJ_SPHERE,
@@ -64,5 +75,46 @@ typedef struct s_ambient
 	t_color			color;
 
 }	t_ambient;
+
+typedef struct s_img
+{
+	void	*image;
+}	t_img;
+
+typedef	struct s_sphere
+{
+	t_object_type	id;
+	t_vector		coordinates;
+	float			diameter;
+	t_color			color;
+
+}	t_sphere;
+
+typedef union u_object_hub
+{
+	t_sphere		sphere;
+
+}	t_object_hub;
+
+typedef struct s_obj
+{
+	t_object_type	id;
+	t_object_hub	objects;
+	float			specular_intensity;
+	float			specular_exponent;
+	float			reflectivity;
+	float			refractive_index;
+	float			pattern_scale;
+	int				pattern_type;
+	//t_bool????
+	bool			has_bump;
+	t_img			bump;
+	bool			has_texture;
+	t_img			texture;
+	t_vector		coordinates;
+	t_color			primary_color;
+	t_color			second_color;
+	struct s_obj	*next;
+}	t_obj;
 
 #endif

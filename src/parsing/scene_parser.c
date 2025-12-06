@@ -1,5 +1,20 @@
 #include "minirt.h"
 
+static int	shape_parser(t_rt *mini, char *line, t_object_type id, int nb)
+{
+	t_obj	*objects;
+	char	**parameters;
+
+	parameters = ft_split(line, ' ');
+	if (array_size(parameters) > nb)
+		return (ft_err_handler(mini, ERR_INVALID_PARAM));
+	objects = object_generator(mini, id);
+	if (id == OBJ_SPHERE && sphere_parser(mini, parameters, objects))
+		return (EXIT_SUCCESS);
+	free_array(parameters);
+	return (EXIT_SUCCESS);
+}
+
 int	element_dispatcher(t_rt *mini, char *line)
 {
 	if (!line[0])
@@ -12,5 +27,7 @@ int	element_dispatcher(t_rt *mini, char *line)
 		return (resolution_parser(mini, line));
 	if (ft_strncmp(line, "L", 1) == 0)
 		return (light_parser(mini, line));
+	if (ft_strncmp(line, "sp", 2) == 0)
+		return (shape_parser(mini, line, OBJ_SPHERE, SPHERE_PARAM));
 	return (ERR_INVALID_PARAM);
 }
