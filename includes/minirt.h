@@ -64,6 +64,7 @@ typedef struct s_rt
 	size_t		number_of_objects;
 	t_obj		*objects;
 	int			render_quality;
+	int			show_help;
 
 }	t_rt;
 
@@ -84,6 +85,10 @@ int			file_init(t_rt *mini, char *file);
 // [Hooks];
 int			key_hook(int keysym, void *param);
 int			close_hook(void *param);
+
+// [Controls Help]:
+void		toggle_controls_help(t_rt *mini);
+void		draw_help_overlay(t_rt *mini);
 
 // [Utils]:
 int			array_size(char	**arr);

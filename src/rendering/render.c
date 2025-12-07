@@ -98,6 +98,7 @@ void	render_scene_quality(t_rt *mini, int quality)
 		y += step;
 	}
 	mlx_put_image_to_window(mini->mlx_ptr, mini->win_ptr, mini->img.mlx_img, 0, 0);
+	draw_help_overlay(mini);
 }
 
 void	render_scene(t_rt *mini)

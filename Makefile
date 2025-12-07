@@ -1,8 +1,8 @@
-NAME		:= rt
+NAME		:= minirt
 CC			:= cc
 RM			:= rm -f
 
-CFLAGS		:= -Wall -Wextra -Werror 
+CFLAGS		:= -Wall -Wextra -Werror -Wno-cast-function-type 
 
 HEADDIR		:= ./includes/
 HEADLIST	:= minirt.h
@@ -11,6 +11,7 @@ HEADERS		:= $(addprefix ${HEADDIR}, ${HEADLIST})
 VPATH		:=	src \
 				src/camera \
 				src/error \
+				src/extra \
 				src/garbage_collector \
 				src/hooking \
 				src/light \
@@ -43,6 +44,7 @@ SRCSLIST	:=	main \
 				vector_utils \
 				vector_math \
 				vector_math2 \
+				controls_help \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 

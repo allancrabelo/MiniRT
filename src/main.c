@@ -11,6 +11,7 @@ int	file_init(t_rt *mini, char *file)
 	ft_err_handler(mini, file_parser(mini, fd));
 	mini->initial_camera = mini->camera;
 	mini->render_quality = 1;
+	mini->show_help = 0;
 	return (EXIT_SUCCESS);
 }
 
