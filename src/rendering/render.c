@@ -79,9 +79,9 @@ void	render_scene_quality(t_rt *mini, int quality)
 			ray = create_camera_ray(mini, x, y);
 			color = ray_color(mini, ray);
 			pixel_color = create_trgb(0,
-				(int)(color.r * 255),
-				(int)(color.g * 255),
-				(int)(color.b * 255));
+				(int)(fmin(fmax(color.r, 0.0), 1.0) * 255),
+				(int)(fmin(fmax(color.g, 0.0), 1.0) * 255),
+				(int)(fmin(fmax(color.b, 0.0), 1.0) * 255));
 			i = 0;
 			while (i < step && y + i < WIN_H)
 			{

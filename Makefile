@@ -2,7 +2,7 @@ NAME		:= minirt
 CC			:= cc
 RM			:= rm -f
 
-CFLAGS		:= -Wall -Wextra -Werror -Wno-cast-function-type 
+CFLAGS		:= -Wall -Wextra -Werror
 
 HEADDIR		:= ./includes/
 HEADLIST	:= minirt.h
