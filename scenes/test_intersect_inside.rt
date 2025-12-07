@@ -1,0 +1,8 @@
+# Test: Sphere Inside Cylinder - Testing object inside another
+A 0.2 255,255,255
+C 0,0,-20 0,0,1 70
+L -10,10,-10 0.7 255,255,255
+
+cy 0,0,0 0,1,0 6 12 100,100,255
+sp 0,0,0 2.5 255,100,100
+sp 0,4,0 2 100,255,100

@@ -1,0 +1,13 @@
+# Test: Rotated Planes - Testing plane rotation
+A 0.2 255,255,255
+C 0,0,-15 0,0,1 70
+L -10,10,-10 0.7 255,255,255
+
+# Floor plane (horizontal)
+pl 0,-5,0 0,1,0 200,200,200
+# Wall plane (vertical)
+pl 0,0,10 0,0,-1 150,150,200
+# Diagonal plane
+pl 0,0,0 0.707,0.707,0 200,150,150
+
+sp 0,0,0 3 255,100,100

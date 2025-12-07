@@ -1,0 +1,9 @@
+# Test: Camera Rotation - Testing different camera angles
+A 0.2 255,255,255
+# Camera looking down and forward
+C 0,10,-10 0,-0.707,0.707 70
+L 5,15,-5 0.7 255,255,255
+
+sp 0,0,0 3 255,100,100
+cy 6,0,0 0,1,0 2 8 100,255,100
+pl 0,-3,0 0,1,0 200,200,200

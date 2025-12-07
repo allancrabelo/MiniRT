@@ -1,0 +1,15 @@
+# Test: Cylinder Complex Rotation - Testing all rotation axes
+A 0.2 255,255,255
+C 0,0,-25 0,0,1 70
+L -15,15,-10 0.7 255,255,255
+
+# Cylinder along X axis
+cy -8,0,0 1,0,0 1.5 10 255,0,0
+# Cylinder along Y axis
+cy 0,0,0 0,1,0 1.5 10 0,255,0
+# Cylinder along Z axis
+cy 8,0,0 0,0,1 1.5 10 0,0,255
+# Diagonal cylinder
+cy 0,6,5 0.577,0.577,0.577 1.5 10 255,255,0
+
+pl 0,-2,0 0,1,0 150,150,150

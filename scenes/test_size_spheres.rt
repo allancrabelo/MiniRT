@@ -1,0 +1,15 @@
+# Test: Sphere Size Variations - Testing different sphere diameters
+A 0.2 255,255,255
+C 0,0,-30 0,0,1 70
+L -10,15,-10 0.7 255,255,255
+
+# Small sphere
+sp -12,0,0 1 255,100,100
+# Medium sphere
+sp -6,0,0 3 255,150,100
+# Large sphere
+sp 0,0,0 6 255,200,100
+# Extra large sphere
+sp 9,0,0 9 255,255,100
+
+pl 0,-6,0 0,1,0 200,200,200

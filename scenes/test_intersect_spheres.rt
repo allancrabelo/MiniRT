@@ -1,0 +1,8 @@
+# Test: Sphere-Sphere Intersection - Testing overlapping spheres
+A 0.2 255,255,255
+C 0,0,-20 0,0,1 70
+L -10,10,-10 0.7 255,255,255
+
+sp -2,0,0 4 255,100,100
+sp 2,0,0 4 100,255,100
+sp 0,3,0 4 100,100,255

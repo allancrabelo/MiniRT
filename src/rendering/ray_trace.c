@@ -74,6 +74,8 @@ t_color	calculate_lighting(t_rt *mini, t_hit hit, t_ray ray)
 	float		light_intensity;
 	t_ray		shadow_ray;
 	t_hit		shadow_hit;
+	t_vector	normal;
+	float		bias;
 
 	ambient = color_mult_color(mini->ambient.color, hit.object->primary_color);
 	ambient = color_mult(ambient, mini->ambient.lighting);
@@ -84,13 +86,21 @@ t_color	calculate_lighting(t_rt *mini, t_hit hit, t_ray ray)
 	{
 		light_dir = vector_normalize(vector_sub(light->coordinates, hit.point));
 		
-		shadow_ray.origin = vector_add(hit.point, vector_mult(hit.normal, 0.001));
+		normal = hit.normal;
+		if (vector_dot(normal, vector_mult(ray.direction, -1)) < 0)
+			normal = vector_mult(normal, -1);
+		
+		bias = 0.001;
+		if (vector_dot(normal, light_dir) < 0)
+			bias = -0.001;
+		
+		shadow_ray.origin = vector_add(hit.point, vector_mult(normal, bias));
 		shadow_ray.direction = light_dir;
 		shadow_hit = intersect_scene(mini, shadow_ray);
 		
 		if (!shadow_hit.hit || shadow_hit.t > vector_length(vector_sub(light->coordinates, hit.point)))
 		{
-			light_intensity = fmax(vector_dot(hit.normal, light_dir), 0.0);
+			light_intensity = fabs(vector_dot(normal, light_dir));
 			diffuse = color_mult_color(light->color, hit.object->primary_color);
 			diffuse = color_mult(diffuse, light_intensity * light->brightness);
 			result = color_add(result, diffuse);

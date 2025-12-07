@@ -30,7 +30,7 @@ static t_hit	intersect_cap(t_ray ray, t_obj *obj, float cap_height, t_vector axi
 		vector_mult(axis, cap_height));
 	denom = vector_dot(axis, ray.direction);
 	
-	if (fabs(denom) < 0.0001)
+	if (fabs(denom) < 1e-8)
 		return ((t_hit){.hit = false, .t = INFINITY});
 	
 	t = vector_dot(vector_sub(cap_center, ray.origin), axis) / denom;
@@ -43,7 +43,7 @@ static t_hit	intersect_cap(t_ray ray, t_obj *obj, float cap_height, t_vector axi
 	radius = obj->objects.cylinder.diameter / 2.0;
 	dist_sq = vector_dot(v, v);
 	
-	if (dist_sq > radius * radius)
+	if (dist_sq > radius * radius + 1e-6)
 		return ((t_hit){.hit = false, .t = INFINITY});
 	
 	hit.hit = true;
@@ -138,6 +138,9 @@ t_hit	intersect_cylinder(t_ray ray, t_obj *obj)
 	hit.normal = vector_normalize(vector_sub(d, 
 		vector_mult(obj->objects.cylinder.orientation,
 		vector_dot(d, obj->objects.cylinder.orientation))));
+	
+	if (vector_dot(hit.normal, ray.direction) > 0)
+		hit.normal = vector_mult(hit.normal, -1);
 	
 	return (hit);
 }

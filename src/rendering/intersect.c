@@ -41,6 +41,8 @@ t_hit	intersect_sphere(t_ray ray, t_obj *obj)
 	hit.point = vector_add(ray.origin, vector_mult(ray.direction, t));
 	hit.normal = vector_normalize(vector_sub(hit.point, 
 		obj->objects.sphere.coordinates));
+	if (vector_dot(hit.normal, ray.direction) > 0)
+		hit.normal = vector_mult(hit.normal, -1);
 	hit.object = obj;
 	return (hit);
 }
