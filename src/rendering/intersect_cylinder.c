@@ -68,6 +68,7 @@ static t_hit	cylinder_body_intersect(t_ray ray, t_obj *obj)
 	float		t;
 	t_hit		hit;
 
+	hit.normal = (t_vector){0, 0, 0};
 	axis = obj->objects.cylinder.orientation;
 	radius = obj->objects.cylinder.diameter / 2.0;
 	oc = vector_sub(ray.origin, obj->objects.cylinder.coordinates);

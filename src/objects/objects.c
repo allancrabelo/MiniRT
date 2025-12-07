@@ -19,7 +19,7 @@ t_obj	*object_generator(t_rt *mini, t_object_type id)
 {
 	t_obj	*object;
 
-	object = ft_calloc(sizeof(t_obj), 1);
+	object = gc_calloc(mini, sizeof(t_obj));
 	object->id = id;
 	object->specular_intensity = DEFAULT_SPECULAR_INTENSITY;
 	object->specular_exponent = DEFAULT_SPECULAR_EXPONENT;

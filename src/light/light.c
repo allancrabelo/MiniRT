@@ -19,7 +19,7 @@ t_light	*light_generator(t_rt *mini)
 {
 	t_light	*light;
 
-	light = ft_calloc(sizeof(t_light), 1);
+	light = gc_calloc(mini, sizeof(t_light));
 	if (!light)
 		return (0);
 	light->id = OBJ_LIGHT;
