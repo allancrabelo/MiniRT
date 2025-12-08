@@ -9,7 +9,6 @@ t_hit	intersect_scene(t_rt *mini, t_ray ray)
 	closest_hit.hit = false;
 	closest_hit.t = INFINITY;
 	closest_hit.object = NULL;
-	
 	current = mini->objects;
 	while (current)
 	{
@@ -22,15 +21,12 @@ t_hit	intersect_scene(t_rt *mini, t_ray ray)
 		else
 		{
 			current = current->next;
-			continue;
+			continue ;
 		}
-		
 		if (hit.hit && hit.t < closest_hit.t)
 			closest_hit = hit;
-		
 		current = current->next;
 	}
-	
 	return (closest_hit);
 }
 
@@ -79,36 +75,30 @@ t_color	calculate_lighting(t_rt *mini, t_hit hit, t_ray ray)
 
 	ambient = color_mult_color(mini->ambient.color, hit.object->primary_color);
 	ambient = color_mult(ambient, mini->ambient.lighting);
-	
 	result = ambient;
 	light = mini->light;
 	while (light)
 	{
 		light_dir = vector_normalize(vector_sub(light->coordinates, hit.point));
-		
 		normal = hit.normal;
 		if (vector_dot(normal, vector_mult(ray.direction, -1)) < 0)
 			normal = vector_mult(normal, -1);
-		
 		bias = 0.001;
 		if (vector_dot(normal, light_dir) < 0)
 			bias = -0.001;
-		
 		shadow_ray.origin = vector_add(hit.point, vector_mult(normal, bias));
 		shadow_ray.direction = light_dir;
 		shadow_hit = intersect_scene(mini, shadow_ray);
-		
-		if (!shadow_hit.hit || shadow_hit.t > vector_length(vector_sub(light->coordinates, hit.point)))
+		if (!shadow_hit.hit || shadow_hit.t
+			> vector_length(vector_sub(light->coordinates, hit.point)))
 		{
 			light_intensity = fabs(vector_dot(normal, light_dir));
 			diffuse = color_mult_color(light->color, hit.object->primary_color);
 			diffuse = color_mult(diffuse, light_intensity * light->brightness);
 			result = color_add(result, diffuse);
 		}
-		
 		light = light->next;
 	}
-	
 	(void)ray;
 	return (result);
 }
@@ -119,10 +109,8 @@ t_color	ray_color(t_rt *mini, t_ray ray)
 	t_color	bg_color;
 
 	hit = intersect_scene(mini, ray);
-	
 	if (hit.hit)
 		return (calculate_lighting(mini, hit, ray));
-	
 	bg_color.r = 0.0;
 	bg_color.g = 0.0;
 	bg_color.b = 0.0;

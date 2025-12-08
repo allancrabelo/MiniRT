@@ -35,26 +35,21 @@ static t_ray	create_camera_ray(t_rt *mini, float x, float y)
 	fov_rad = mini->camera.fov * M_PI / 180.0;
 	viewport_height = 2.0 * tan(fov_rad / 2.0);
 	viewport_width = viewport_height * aspect_ratio;
-
 	pixel_pos.x = (x / WIN_W - 0.5) * viewport_width;
 	pixel_pos.y = (0.5 - y / WIN_H) * viewport_height;
 	pixel_pos.z = 1.0;
-
 	ray.origin = mini->camera.coordinates;
 	ray.direction = vector_normalize(vector_add(
-		vector_mult(mini->camera.orientation, pixel_pos.z),
-		vector_add(
-			vector_mult(vector_normalize(vector_cross(
-				mini->camera.orientation,
-				(t_vector){0, 1, 0})), pixel_pos.x),
-			vector_mult(vector_normalize(vector_cross(
-				vector_normalize(vector_cross(
-					mini->camera.orientation,
-					(t_vector){0, 1, 0})),
-				mini->camera.orientation)), pixel_pos.y)
-		)
-	));
-
+				vector_mult(mini->camera.orientation, pixel_pos.z),
+				vector_add(vector_mult(vector_normalize(vector_cross
+							(mini->camera.orientation, (t_vector){0, 1, 0})),
+						pixel_pos.x),
+					vector_mult(vector_normalize(vector_cross(vector_normalize
+								(vector_cross(mini->camera.orientation,
+										(t_vector){0, 1, 0})),
+								mini->camera.orientation)), pixel_pos.y)
+					)
+				));
 	return (ray);
 }
 
@@ -79,9 +74,9 @@ void	render_scene_quality(t_rt *mini, int quality)
 			ray = create_camera_ray(mini, x, y);
 			color = ray_color(mini, ray);
 			pixel_color = create_trgb(0,
-				(int)(fmin(fmax(color.r, 0.0), 1.0) * 255),
-				(int)(fmin(fmax(color.g, 0.0), 1.0) * 255),
-				(int)(fmin(fmax(color.b, 0.0), 1.0) * 255));
+					(int)(fmin(fmax(color.r, 0.0), 1.0) * 255),
+					(int)(fmin(fmax(color.g, 0.0), 1.0) * 255),
+					(int)(fmin(fmax(color.b, 0.0), 1.0) * 255));
 			i = 0;
 			while (i < step && y + i < WIN_H)
 			{
@@ -97,7 +92,8 @@ void	render_scene_quality(t_rt *mini, int quality)
 		}
 		y += step;
 	}
-	mlx_put_image_to_window(mini->mlx_ptr, mini->win_ptr, mini->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(mini->mlx_ptr,
+		mini->win_ptr, mini->img.mlx_img, 0, 0);
 	draw_help_overlay(mini);
 }
 

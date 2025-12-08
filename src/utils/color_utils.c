@@ -23,7 +23,6 @@ int	colors_parser(char *str, t_color *primary_color, t_color *second_color)
 	return (ret);
 }
 
-
 int	color_parser(char *str, t_color *color)
 {
 	int		i;

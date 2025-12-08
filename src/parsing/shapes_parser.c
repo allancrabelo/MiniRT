@@ -14,7 +14,8 @@ int	sphere_parser(t_rt *mini, char **parameters, t_obj *objects)
 			return (ft_err_handler(mini, ERR_INVALID_COORD));
 		if (i == 2 && float_parser(parameters[i], &sphere.diameter))
 			return (ft_err_handler(mini, ERR_NOT_FLOAT));
-		if (i == 3 && colors_parser(parameters[i], &objects->primary_color, &objects->second_color))
+		if (i == 3 && colors_parser(parameters[i],
+				&objects->primary_color, &objects->second_color))
 			return (ft_err_handler(mini, ERR_INVALID_COLOR));
 	}
 	sphere.coordinates = objects->coordinates;
@@ -36,7 +37,8 @@ int	plane_parser(t_rt *mini, char **parameters, t_obj *objects)
 			return (ft_err_handler(mini, ERR_INVALID_COORD));
 		if (i == 2 && vector_parser(parameters[i], &plane.orientation))
 			return (ft_err_handler(mini, ERR_INVALID_ORIENT));
-		if (i == 3 && colors_parser(parameters[i], &objects->primary_color, &objects->second_color))
+		if (i == 3 && colors_parser(parameters[i],
+				&objects->primary_color, &objects->second_color))
 			return (ft_err_handler(mini, ERR_INVALID_COLOR));
 	}
 	plane.coordinates = objects->coordinates;
@@ -63,7 +65,8 @@ int	cylinder_parser(t_rt *mini, char **parameters, t_obj *objects)
 			return (ft_err_handler(mini, ERR_NOT_FLOAT));
 		if (i == 4 && float_parser(parameters[i], &cylinder.height))
 			return (ft_err_handler(mini, ERR_NOT_FLOAT));
-		if (i == 5 && colors_parser(parameters[i], &objects->primary_color, &objects->second_color))
+		if (i == 5 && colors_parser(parameters[i],
+				&objects->primary_color, &objects->second_color))
 			return (ft_err_handler(mini, ERR_INVALID_COLOR));
 	}
 	cylinder.coordinates = objects->coordinates;
@@ -71,4 +74,3 @@ int	cylinder_parser(t_rt *mini, char **parameters, t_obj *objects)
 	objects->objects.cylinder = cylinder;
 	return (EXIT_SUCCESS);
 }
-

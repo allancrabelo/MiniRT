@@ -99,7 +99,8 @@ int			ambient_parser(t_rt *mini, char *line);
 int			resolution_parser(t_rt *mini, char *line);
 float		ft_atof(char *str);
 int			color_parser(char *str, t_color *color);
-int			colors_parser(char *str, t_color *primary_color, t_color *second_color);
+int			colors_parser(char *str, t_color *primary_color,
+				t_color *second_color);
 int			is_ulong(char *str);
 int			ft_atoc(char *str);
 int			is_float(char *str);
@@ -134,10 +135,10 @@ int			camera_parser(t_rt *mini, char *line, int i);
 t_light		*light_generator(t_rt *mini);
 
 // [Objects]:
-t_obj	*object_generator(t_rt *mini, t_object_type id);
-int		sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
-int		plane_parser(t_rt *mini, char **parameters, t_obj *objects);
-int		cylinder_parser(t_rt *mini, char **parameters, t_obj *objects);
+t_obj		*object_generator(t_rt *mini, t_object_type id);
+int			sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
+int			plane_parser(t_rt *mini, char **parameters, t_obj *objects);
+int			cylinder_parser(t_rt *mini, char **parameters, t_obj *objects);
 
 // Garbage collector and error handler
 void		*gc_calloc(t_rt *mini, size_t size);

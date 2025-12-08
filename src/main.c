@@ -32,7 +32,7 @@ static int	start_mlx(t_rt *mini)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
 	mlx_hook(mini->win_ptr, 17, 0, close_hook, mini);
-	mlx_hook(mini->win_ptr, 2, 1L<<0, key_hook, mini);
+	mlx_hook(mini->win_ptr, 2, 1L << 0, key_hook, mini);
 #pragma GCC diagnostic pop
 	mlx_loop(mini->mlx_ptr);
 	return (EXIT_SUCCESS);

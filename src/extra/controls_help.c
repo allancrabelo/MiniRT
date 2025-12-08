@@ -41,7 +41,7 @@ void	toggle_controls_help(t_rt *mini)
 		draw_help_overlay(mini);
 	else
 	{
-		mlx_put_image_to_window(mini->mlx_ptr, mini->win_ptr, 
+		mlx_put_image_to_window(mini->mlx_ptr, mini->win_ptr,
 			mini->img.mlx_img, 0, 0);
 	}
 }

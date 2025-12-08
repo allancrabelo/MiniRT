@@ -28,16 +28,6 @@ found in scene file\n", 2);
 		ft_putstr_fd("Memory error: failed to allocate memory\n", 2);
 }
 
-static void	err_message_mlx(int code)
-{
-	if (code == ERR_MLX_INIT)
-		ft_putstr_fd("MLX error: failed to initialize MiniLibX\n", 2);
-	else if (code == ERR_MLX_WIN)
-		ft_putstr_fd("MLX error: failed to create window\n", 2);
-	else if (code == ERR_MLX_IMG)
-		ft_putstr_fd("MLX error: failed to create image\n", 2);
-}
-
 static void	err_message_elements(int code)
 {
 	if (code == ERR_INVALID_PARAM)
@@ -63,9 +53,15 @@ light specified\n", 2);
 		ft_putstr_fd("Element error: invalid light parameter(s)\n", 2);
 }
 
-static void	err_message_type(int code)
+static void	err_message_other(int code)
 {
-	if (code == ERR_NOT_FLOAT)
+	if (code == ERR_MLX_INIT)
+		ft_putstr_fd("MLX error: failed to initialize MiniLibX\n", 2);
+	else if (code == ERR_MLX_WIN)
+		ft_putstr_fd("MLX error: failed to create window\n", 2);
+	else if (code == ERR_MLX_IMG)
+		ft_putstr_fd("MLX error: failed to create image\n", 2);
+	else if (code == ERR_NOT_FLOAT)
 		ft_putstr_fd("Type error: expected floating point number\n", 2);
 	else if (code == ERR_NOT_ULONG)
 		ft_putstr_fd("Type error: expected unsigned integer value\n", 2);
@@ -81,11 +77,9 @@ static void	err_message(int code)
 		if (code < 200)
 			err_message_parsing(code);
 		else if (code < 300)
-			err_message_mlx(code);
-		else if (code < 400)
 			err_message_elements(code);
 		else if (code < 500)
-			err_message_type(code);
+			err_message_other(code);
 		else
 			ft_putstr_fd("Unknown error code\n", 2);
 		ft_putstr_fd("\n", 2);

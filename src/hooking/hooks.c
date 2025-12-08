@@ -22,7 +22,7 @@ static void	rotate_camera(t_rt *mini, int direction)
 	if (direction == 'a' || direction == 'A')
 		angle = -angle;
 	mini->camera.orientation = vector_normalize(
-		rotate_vector_y(mini->camera.orientation, angle));
+			rotate_vector_y(mini->camera.orientation, angle));
 	mini->render_quality = 4;
 	render_scene(mini);
 }
@@ -37,7 +37,6 @@ static void	move_camera_forward_back(t_rt *mini, int direction)
 		move = vector_mult(mini->camera.orientation, speed);
 	else
 		move = vector_mult(mini->camera.orientation, -speed);
-	
 	mini->camera.coordinates = vector_add(mini->camera.coordinates, move);
 	mini->render_quality = 4;
 	render_scene(mini);
@@ -50,13 +49,12 @@ static void	move_camera_strafe(t_rt *mini, int direction)
 	float		speed;
 
 	speed = 2.0;
-	right = vector_normalize(vector_cross(mini->camera.orientation, 
-		(t_vector){0, 1, 0}));
+	right = vector_normalize(vector_cross(mini->camera.orientation,
+				(t_vector){0, 1, 0}));
 	if (direction == XK_Left)
 		move = vector_mult(right, -speed);
 	else
 		move = vector_mult(right, speed);
-	
 	mini->camera.coordinates = vector_add(mini->camera.coordinates, move);
 	mini->render_quality = 4;
 	render_scene(mini);
@@ -71,7 +69,6 @@ static void	move_camera_vertical(t_rt *mini, int direction)
 		mini->camera.coordinates.y += speed;
 	else
 		mini->camera.coordinates.y -= speed;
-	
 	mini->render_quality = 4;
 	render_scene(mini);
 }

@@ -93,7 +93,7 @@ typedef struct s_ray
 	t_vector	direction;
 }	t_ray;
 
-typedef	struct s_sphere
+typedef struct s_sphere
 {
 	t_object_type	id;
 	t_vector		coordinates;
