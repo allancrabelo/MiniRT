@@ -19,7 +19,7 @@ static void	rotate_camera(t_rt *mini, int direction)
 	float	angle;
 
 	angle = 0.1;
-	if (direction == 'a' || direction == 'A')
+	if (direction == 'd' || direction == 'D')
 		angle = -angle;
 	mini->camera.orientation = vector_normalize(
 			rotate_vector_y(mini->camera.orientation, angle));
