@@ -19,7 +19,7 @@ static void	rotate_camera(t_rt *mini, int direction)
 	float	angle;
 
 	angle = 0.1;
-	if (direction == 'd' || direction == 'D')
+	if (direction == XK_Right)
 		angle = -angle;
 	mini->camera.orientation = vector_normalize(
 			rotate_vector_y(mini->camera.orientation, angle));
@@ -51,7 +51,7 @@ static void	move_camera_strafe(t_rt *mini, int direction)
 	speed = 2.0;
 	right = vector_normalize(vector_cross(mini->camera.orientation,
 				(t_vector){0, 1, 0}));
-	if (direction == XK_Left)
+	if (direction == 'a' || direction == 'A')
 		move = vector_mult(right, -speed);
 	else
 		move = vector_mult(right, speed);
@@ -83,9 +83,9 @@ int	key_hook(int keysym, void *param)
 	else if (keysym == XK_Up || keysym == XK_Down)
 		move_camera_vertical(mini, keysym);
 	else if (keysym == XK_Left || keysym == XK_Right)
-		move_camera_strafe(mini, keysym);
-	else if (keysym == 'a' || keysym == 'A' || keysym == 'd' || keysym == 'D')
 		rotate_camera(mini, keysym);
+	else if (keysym == 'a' || keysym == 'A' || keysym == 'd' || keysym == 'D')
+		move_camera_strafe(mini, keysym);
 	else if (keysym == 'w' || keysym == 'W' || keysym == 's' || keysym == 'S')
 		move_camera_forward_back(mini, keysym);
 	else if (keysym == XK_Tab || keysym == 0xff09)

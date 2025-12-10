@@ -15,7 +15,6 @@ static char	*line_cleaner(char *line)
 		i++;
 	}
 	new_line = ft_strtrim(line, " ");
-	free(line);
 	return (new_line);
 }
 
