@@ -20,13 +20,13 @@ void	draw_help_overlay(t_rt *mini)
 	draw_text_line(mini, 60, "CAMERA MOVEMENT:", cyan);
 	draw_text_line(mini, 80, "  W          - Move forward", white);
 	draw_text_line(mini, 100, "  S          - Move backward", white);
-	draw_text_line(mini, 120, "  A          - Rotate camera left", white);
-	draw_text_line(mini, 140, "  D          - Rotate camera right", white);
+	draw_text_line(mini, 120, "  A          - Strafe left (lateral)", white); 
+	draw_text_line(mini, 140, "  D          - Strafe right (lateral)", white); 
 	draw_text_line(mini, 170, "ARROW KEYS:", cyan);
 	draw_text_line(mini, 190, "  Arrow UP   - Move up (vertical)", white);
 	draw_text_line(mini, 210, "  Arrow DOWN - Move down (vertical)", white);
-	draw_text_line(mini, 230, "  Arrow LEFT - Strafe left (lateral)", white);
-	draw_text_line(mini, 250, "  Arrow RIGHT- Strafe right (lateral)", white);
+	draw_text_line(mini, 230, "  Arrow LEFT - Rotate camera left", white);
+	draw_text_line(mini, 250, "  Arrow RIGHT- Rotate camera right", white);
 	draw_text_line(mini, 280, "OTHER FUNCTIONS:", cyan);
 	draw_text_line(mini, 300, "  R          - Reset camera position", white);
 	draw_text_line(mini, 320, "  Q          - High quality render", white);
