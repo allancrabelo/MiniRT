@@ -96,10 +96,15 @@ int	ft_err_handler(t_rt *mini, int code)
 {
 	if (code == 0)
 		return (0);
+	if (mini && mini->img.mlx_img)
+		mlx_destroy_image(mini->mlx_ptr, mini->img.mlx_img);
 	if (mini && mini->win_ptr)
 		mlx_destroy_window(mini->mlx_ptr, mini->win_ptr);
 	if (mini && mini->mlx_ptr)
+	{
 		mlx_destroy_display(mini->mlx_ptr);
+		free(mini->mlx_ptr);
+	}
 	gc_free_all(mini);
 	if (mini)
 		free(mini);

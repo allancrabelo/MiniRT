@@ -16,15 +16,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
+	size_t	len;
 
 	if (!s1 || !set)
 		return (NULL);
+	len = ft_strlen(s1);
+	if (len == 0)
+		return (ft_strdup(""));
 	i = 0;
 	while (s1[i] && ft_strchr(set, s1[i]))
 		i++;
-	j = ft_strlen(s1) - 1;
-	while (s1[j] && ft_strchr(set, s1[j]))
+	j = len - 1;
+	while (j > i && ft_strchr(set, s1[j]))
 		j--;
+	if (i > j)
+		return (ft_strdup(""));
 	return (ft_substr(s1, i, j - i + 1));
 }
 /* int	main(void)
