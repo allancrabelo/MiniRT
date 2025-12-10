@@ -29,11 +29,8 @@ static int	start_mlx(t_rt *mini)
 	mini->img.addr = mlx_get_data_addr(mini->img.mlx_img, &mini->img.bpp,
 			&mini->img.line_len, &mini->img.endian);
 	render_scene(mini);
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
 	mlx_hook(mini->win_ptr, 17, 0, close_hook, mini);
 	mlx_hook(mini->win_ptr, 2, 1L << 0, key_hook, mini);
-#pragma GCC diagnostic pop
 	mlx_loop(mini->mlx_ptr);
 	return (EXIT_SUCCESS);
 }
