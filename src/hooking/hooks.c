@@ -104,6 +104,20 @@ int	key_hook(int keysym, void *param)
 		mini->camera = mini->initial_camera;
 		mini->render_quality = 1;
 	}
+	// Numpad with Num Lock ON (numeric keysyms: 0xffb1-0xffb9)
+	else if (keysym >= XK_KP_1 && keysym <= XK_KP_9)
+	{
+		handle_numpad_camera(mini, keysym);
+		return (0);
+	}
+	// Numpad with Num Lock OFF (navigation keysyms)
+	else if (keysym == XK_KP_Home || keysym == XK_KP_Up || keysym == XK_KP_Prior ||
+			keysym == XK_KP_Left || keysym == XK_KP_Begin || keysym == XK_KP_Right ||
+			keysym == XK_KP_End || keysym == XK_KP_Down || keysym == XK_KP_Next)
+	{
+		handle_numpad_camera(mini, keysym);
+		return (0);
+	}
 	else
 		return (0);
 	if (keysym == 'r' || keysym == 'R')

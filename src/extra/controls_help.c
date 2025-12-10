@@ -27,11 +27,20 @@ void	draw_help_overlay(t_rt *mini)
 	draw_text_line(mini, 210, "  Arrow DOWN - Move down (vertical)", white);
 	draw_text_line(mini, 230, "  Arrow LEFT - Rotate camera left", white);
 	draw_text_line(mini, 250, "  Arrow RIGHT- Rotate camera right", white);
-	draw_text_line(mini, 280, "OTHER FUNCTIONS:", cyan);
-	draw_text_line(mini, 300, "  R          - Reset camera position", white);
-	draw_text_line(mini, 320, "  Q          - High quality render", white);
-	draw_text_line(mini, 340, "  TAB        - Show/Hide this help", white);
-	draw_text_line(mini, 360, "  ESC        - Exit program", white);
+	draw_text_line(mini, 280, "NUMPAD - PRESET CAMERAS:", cyan);
+	draw_text_line(mini, 300, "  1          - Front view", white);
+	draw_text_line(mini, 320, "  2          - Front-bottom view", white);
+	draw_text_line(mini, 340, "  3          - Right side view", white);
+	draw_text_line(mini, 360, "  4          - Left side view", white);
+	draw_text_line(mini, 380, "  5          - Top view", white);
+	draw_text_line(mini, 400, "  6          - Back view", white);
+	draw_text_line(mini, 420, "  7          - Isometric view", white);
+	draw_text_line(mini, 440, "  8          - Alt isometric view", white);
+	draw_text_line(mini, 470, "OTHER FUNCTIONS:", cyan);
+	draw_text_line(mini, 490, "  R          - Reset camera to initial position", white);
+	draw_text_line(mini, 510, "  Q          - High quality render", white);
+	draw_text_line(mini, 530, "  TAB        - Show/Hide this help", white);
+	draw_text_line(mini, 550, "  ESC        - Exit program", white);
 }
 
 void	toggle_controls_help(t_rt *mini)

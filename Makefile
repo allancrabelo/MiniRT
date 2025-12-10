@@ -45,6 +45,7 @@ SRCSLIST	:=	main \
 				vector_math \
 				vector_math2 \
 				controls_help \
+				camera_presets \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 

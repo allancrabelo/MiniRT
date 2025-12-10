@@ -90,6 +90,9 @@ int			close_hook(void *param);
 void		toggle_controls_help(t_rt *mini);
 void		draw_help_overlay(t_rt *mini);
 
+// [Camera Presets]:
+void		handle_numpad_camera(t_rt *mini, int keysym);
+
 // [Utils]:
 int			array_size(char	**arr);
 void		free_array(char **arr);
