@@ -39,6 +39,7 @@ SRCSLIST	:=	main \
 				ray_trace \
 				array_utils \
 				color_utils \
+				color_ops \
 				conversion_utils \
 				type_utils \
 				vector_utils \

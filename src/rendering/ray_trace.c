@@ -1,5 +1,16 @@
 #include "minirt.h"
 
+static t_hit	check_object_intersection(t_ray ray, t_obj *obj)
+{
+	if (obj->id == OBJ_SPHERE)
+		return (intersect_sphere(ray, obj));
+	else if (obj->id == OBJ_PLANE)
+		return (intersect_plane(ray, obj));
+	else if (obj->id == OBJ_CYLINDER)
+		return (intersect_cylinder(ray, obj));
+	return ((t_hit){.hit = false, .t = INFINITY});
+}
+
 t_hit	intersect_scene(t_rt *mini, t_ray ray)
 {
 	t_obj	*current;
@@ -8,21 +19,10 @@ t_hit	intersect_scene(t_rt *mini, t_ray ray)
 
 	closest_hit.hit = false;
 	closest_hit.t = INFINITY;
-	closest_hit.object = NULL;
 	current = mini->objects;
 	while (current)
 	{
-		if (current->id == OBJ_SPHERE)
-			hit = intersect_sphere(ray, current);
-		else if (current->id == OBJ_PLANE)
-			hit = intersect_plane(ray, current);
-		else if (current->id == OBJ_CYLINDER)
-			hit = intersect_cylinder(ray, current);
-		else
-		{
-			current = current->next;
-			continue ;
-		}
+		hit = check_object_intersection(ray, current);
 		if (hit.hit && hit.t < closest_hit.t)
 			closest_hit = hit;
 		current = current->next;
@@ -30,89 +30,98 @@ t_hit	intersect_scene(t_rt *mini, t_ray ray)
 	return (closest_hit);
 }
 
-static t_color	color_add(t_color a, t_color b)
+static t_color	calculate_ambient(t_rt *mini, t_hit hit)
 {
-	t_color	result;
+	t_color	ambient;
 
-	result.r = fmin(a.r + b.r, 1.0);
-	result.g = fmin(a.g + b.g, 1.0);
-	result.b = fmin(a.b + b.b, 1.0);
-	return (result);
+	ambient = color_mult_color(mini->ambient.color,
+			hit.object->primary_color);
+	ambient = color_mult(ambient, mini->ambient.lighting);
+	return (ambient);
 }
 
-static t_color	color_mult(t_color c, float scalar)
+static t_vector	adjust_shadow_origin(t_vector point, t_vector normal,
+		t_vector light_dir)
 {
-	t_color	result;
+	float	bias;
 
-	result.r = fmin(c.r * scalar, 1.0);
-	result.g = fmin(c.g * scalar, 1.0);
-	result.b = fmin(c.b * scalar, 1.0);
-	return (result);
+	bias = EPSILON;
+	if (vector_dot(normal, light_dir) < 0)
+		bias = -EPSILON;
+	return (vector_add(point, vector_mult(normal, bias)));
 }
 
-static t_color	color_mult_color(t_color a, t_color b)
+static bool	is_in_shadow(t_rt *mini, t_vector point, t_light *light,
+		t_vector normal)
 {
-	t_color	result;
+	t_ray		shadow_ray;
+	t_hit		shadow_hit;
+	t_vector	light_dir;
+	float		light_dist;
 
-	result.r = a.r * b.r;
-	result.g = a.g * b.g;
-	result.b = a.b * b.b;
-	return (result);
+	light_dir = vector_normalize(vector_sub(light->coordinates, point));
+	shadow_ray.origin = adjust_shadow_origin(point, normal, light_dir);
+	shadow_ray.direction = light_dir;
+	shadow_hit = intersect_scene(mini, shadow_ray);
+	light_dist = vector_length(vector_sub(light->coordinates, point));
+	return (shadow_hit.hit && shadow_hit.t < light_dist);
+}
+
+static t_color	calculate_diffuse(t_light *light, t_hit hit,
+		t_vector normal, t_vector light_dir)
+{
+	t_color	diffuse;
+	float	light_intensity;
+
+	light_intensity = fabs(vector_dot(normal, light_dir));
+	diffuse = color_mult_color(light->color, hit.object->primary_color);
+	diffuse = color_mult(diffuse, light_intensity * light->brightness);
+	return (diffuse);
+}
+
+static t_color	process_light(t_rt *mini, t_hit hit, t_light *light,
+		t_vector normal)
+{
+	t_vector	light_dir;
+
+	light_dir = vector_normalize(vector_sub(light->coordinates, hit.point));
+	if (is_in_shadow(mini, hit.point, light, normal))
+		return ((t_color){0, 0, 0});
+	return (calculate_diffuse(light, hit, normal, light_dir));
+}
+
+static t_vector	get_facing_normal(t_vector normal, t_vector view_dir)
+{
+	if (vector_dot(normal, view_dir) < 0)
+		return (vector_mult(normal, -1));
+	return (normal);
 }
 
 t_color	calculate_lighting(t_rt *mini, t_hit hit, t_ray ray)
 {
-	t_color		ambient;
-	t_color		diffuse;
 	t_color		result;
 	t_light		*light;
-	t_vector	light_dir;
-	float		light_intensity;
-	t_ray		shadow_ray;
-	t_hit		shadow_hit;
 	t_vector	normal;
-	float		bias;
+	t_vector	view_dir;
 
-	ambient = color_mult_color(mini->ambient.color, hit.object->primary_color);
-	ambient = color_mult(ambient, mini->ambient.lighting);
-	result = ambient;
+	result = calculate_ambient(mini, hit);
+	view_dir = vector_mult(ray.direction, -1);
+	normal = get_facing_normal(hit.normal, view_dir);
 	light = mini->light;
 	while (light)
 	{
-		light_dir = vector_normalize(vector_sub(light->coordinates, hit.point));
-		normal = hit.normal;
-		if (vector_dot(normal, vector_mult(ray.direction, -1)) < 0)
-			normal = vector_mult(normal, -1);
-		bias = 0.001;
-		if (vector_dot(normal, light_dir) < 0)
-			bias = -0.001;
-		shadow_ray.origin = vector_add(hit.point, vector_mult(normal, bias));
-		shadow_ray.direction = light_dir;
-		shadow_hit = intersect_scene(mini, shadow_ray);
-		if (!shadow_hit.hit || shadow_hit.t
-			> vector_length(vector_sub(light->coordinates, hit.point)))
-		{
-			light_intensity = fabs(vector_dot(normal, light_dir));
-			diffuse = color_mult_color(light->color, hit.object->primary_color);
-			diffuse = color_mult(diffuse, light_intensity * light->brightness);
-			result = color_add(result, diffuse);
-		}
+		result = color_add(result, process_light(mini, hit, light, normal));
 		light = light->next;
 	}
-	(void)ray;
 	return (result);
 }
 
 t_color	ray_color(t_rt *mini, t_ray ray)
 {
 	t_hit	hit;
-	t_color	bg_color;
 
 	hit = intersect_scene(mini, ray);
 	if (hit.hit)
 		return (calculate_lighting(mini, hit, ray));
-	bg_color.r = 0.0;
-	bg_color.g = 0.0;
-	bg_color.b = 0.0;
-	return (bg_color);
+	return ((t_color){0.0, 0.0, 0.0});
 }

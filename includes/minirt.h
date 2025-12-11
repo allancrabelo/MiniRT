@@ -23,6 +23,11 @@
 # define WIN_W 1280
 # define WIN_H 720
 
+// Rendering Constants:
+# define EPSILON 0.001
+# define EPSILON_SMALL 1e-6
+# define EPSILON_TINY 1e-8
+
 // Structures
 typedef enum e_token_type
 {
@@ -101,7 +106,6 @@ int			ulong_parser(char *str, size_t *num);
 int			ambient_parser(t_rt *mini, char *line);
 int			resolution_parser(t_rt *mini, char *line);
 float		ft_atof(char *str);
-int			color_parser(char *str, t_color *color);
 int			colors_parser(char *str, t_color *primary_color,
 				t_color *second_color);
 int			is_ulong(char *str);
@@ -129,6 +133,12 @@ t_hit		intersect_cylinder(t_ray ray, t_obj *obj);
 t_color		calculate_lighting(t_rt *mini, t_hit hit, t_ray ray);
 int			create_trgb(int t, int r, int g, int b);
 void		img_pix_put(t_img *img, int x, int y, int color);
+
+// Color operations
+t_color		color_add(t_color c1, t_color c2);
+t_color		color_mult(t_color c, float scalar);
+t_color		color_mult_color(t_color c1, t_color c2);
+int			color_parser(char *str, t_color *color);
 
 // [Camera]:
 t_vector	*camera_normalizer(t_vector *vector);

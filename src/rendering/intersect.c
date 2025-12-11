@@ -29,9 +29,9 @@ t_hit	intersect_sphere(t_ray ray, t_obj *obj)
 	if (discriminant < 0)
 		return (create_miss());
 	t = (-b - sqrt(discriminant)) / (2.0 * a);
-	if (t < 0.001)
+	if (t < EPSILON)
 		t = (-b + sqrt(discriminant)) / (2.0 * a);
-	if (t < 0.001)
+	if (t < EPSILON)
 		return (create_miss());
 	hit.hit = true;
 	hit.t = t;
@@ -52,11 +52,11 @@ t_hit	intersect_plane(t_ray ray, t_obj *obj)
 	t_hit		hit;
 
 	denom = vector_dot(obj->objects.plane.orientation, ray.direction);
-	if (fabs(denom) < 0.0001)
+	if (fabs(denom) < EPSILON)
 		return (create_miss());
 	p0l0 = vector_sub(obj->objects.plane.coordinates, ray.origin);
 	t = vector_dot(p0l0, obj->objects.plane.orientation) / denom;
-	if (t < 0.001)
+	if (t < EPSILON)
 		return (create_miss());
 	hit.hit = true;
 	hit.t = t;
