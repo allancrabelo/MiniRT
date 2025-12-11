@@ -1,5 +1,17 @@
 #include "minirt.h"
 
+/**
+ * @brief Parses sphere parameters and populates object data.
+ * 
+ * Processes sphere parameters from configuration file:
+ * coordinates, diameter, and colors.
+ * Validates each parameter and stores in object structure.
+ * 
+ * @param mini Pointer to main program structure for error handling.
+ * @param parameters Array of sphere parameter strings.
+ * @param objects Pointer to object structure to populate with sphere data.
+ * @return int SUCCESS if all parameters are valid, error code otherwise.
+ */
 int	sphere_parser(t_rt *mini, char **parameters, t_obj *objects)
 {
 	t_sphere	sphere;
@@ -23,6 +35,18 @@ int	sphere_parser(t_rt *mini, char **parameters, t_obj *objects)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Parses plane parameters and populates object data.
+ * 
+ * Processes plane parameters from configuration file:
+ * coordinates, orientation, and colors.
+ * Validates each parameter and normalizes orientation vector.
+ * 
+ * @param mini Pointer to main program structure for error handling.
+ * @param parameters Array of plane parameter strings.
+ * @param objects Pointer to object structure to populate with plane data.
+ * @return int SUCCESS if all parameters are valid, error code otherwise.
+ */
 int	plane_parser(t_rt *mini, char **parameters, t_obj *objects)
 {
 	t_plane		plane;
@@ -47,6 +71,18 @@ int	plane_parser(t_rt *mini, char **parameters, t_obj *objects)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Parses cylinder parameters and populates object data.
+ * 
+ * Processes cylinder parameters from configuration file:
+ * coordinates, orientation, diameter, height, and colors.
+ * Validates each parameter and normalizes orientation vector.
+ * 
+ * @param mini Pointer to main program structure for error handling.
+ * @param parameters Array of cylinder parameter strings.
+ * @param objects Pointer to object structure to populate with cylinder data.
+ * @return int SUCCESS if all parameters are valid, error code otherwise.
+ */
 int	cylinder_parser(t_rt *mini, char **parameters, t_obj *objects)
 {
 	t_cylinder	cylinder;

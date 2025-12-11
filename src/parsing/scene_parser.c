@@ -1,5 +1,17 @@
 #include "minirt.h"
 
+/**
+ * @brief Parses and creates shape objects from configuration lines.
+ * 
+ * Splits the line into parameters, creates an object of specified type,
+ * and calls the appropriate shape-specific parser.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line containing shape parameters.
+ * @param id Type identifier of the shape (sphere, plane, cylinder).
+ * @param nb Expected number of parameters for the shape.
+ * @return int SUCCESS if shape parsed and created, error code otherwise.
+ */
 static int	shape_parser(t_rt *mini, char *line, t_object_type id, int nb)
 {
 	t_obj	*objects;
@@ -19,6 +31,16 @@ static int	shape_parser(t_rt *mini, char *line, t_object_type id, int nb)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Routes configuration lines to appropriate parsers.
+ * 
+ * Identifies the element type from the first character(s) of a line
+ * and dispatches it to the corresponding parser function.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line to process.
+ * @return int SUCCESS if line processed, error code if unknown element.
+ */
 int	element_dispatcher(t_rt *mini, char *line)
 {
 	if (!line[0] || line[0] == '#')

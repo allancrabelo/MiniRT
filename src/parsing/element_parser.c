@@ -1,5 +1,14 @@
 #include "minirt.h"
 
+/**
+ * @brief Parses resolution parameters from configuration.
+ * 
+ * Processes window resolution: width and height.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line containing resolution parameters.
+ * @return int SUCCESS if resolution parsed correctly, error code otherwise.
+ */
 int	resolution_parser(t_rt *mini, char *line)
 {
 	int		i;
@@ -21,6 +30,16 @@ int	resolution_parser(t_rt *mini, char *line)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Parses ambient lighting parameters from configuration.
+ * 
+ * Processes ambient parameters: lighting ratio and color.
+ * Validates that only one ambient light exists.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line containing ambient parameters.
+ * @return int SUCCESS if ambient parsed correctly, error code otherwise.
+ */
 int	ambient_parser(t_rt *mini, char *line)
 {
 	t_ambient	ambient;
@@ -48,6 +67,17 @@ int	ambient_parser(t_rt *mini, char *line)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Parses camera parameters from configuration.
+ * 
+ * Processes camera parameters: coordinates, orientation, and field of view.
+ * Validates that only one camera exists and normalizes orientation vector.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line containing camera parameters.
+ * @param i Starting index for parameter processing.
+ * @return int SUCCESS if camera parsed correctly, error code otherwise.
+ */
 int	camera_parser(t_rt *mini, char *line, int i)
 {
 	t_camera	camera;
@@ -77,6 +107,16 @@ int	camera_parser(t_rt *mini, char *line, int i)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Parses light parameters from configuration.
+ * 
+ * Processes light parameters: coordinates, brightness, and color.
+ * Creates a light object and validates all parameters.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param line Configuration line containing light parameters.
+ * @return int SUCCESS if light parsed correctly, error code otherwise.
+ */
 int	light_parser(t_rt *mini, char *line)
 {
 	t_light		*light;

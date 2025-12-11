@@ -1,5 +1,13 @@
 #include "minirt.h"
 
+/**
+ * @brief Cleans and formats a configuration line.
+ * 
+ * Replaces tabs and newlines with spaces, then trims leading/trailing spaces.
+ * 
+ * @param line Raw line from configuration file.
+ * @return char* Cleaned line, or NULL if input is NULL.
+ */
 static char	*line_cleaner(char *line)
 {
 	char	*new_line;
@@ -19,6 +27,16 @@ static char	*line_cleaner(char *line)
 	return (new_line);
 }
 
+/**
+ * @brief Parses configuration file line by line.
+ * 
+ * Reads the file descriptor line by line, cleans each line,
+ * and dispatches it for parsing. Tracks line numbers for error reporting.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param fd File descriptor of the configuration file.
+ * @return int Error code from parsing, or SUCCESS if file parsed completely.
+ */
 int	file_parser(t_rt *mini, int fd)
 {
 	int		err;
