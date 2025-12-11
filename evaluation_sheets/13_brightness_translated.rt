@@ -1,0 +1,10 @@
+# Brightness Test 2: Translated sphere with side lighting
+# Sphere translated from origin, camera facing sphere
+# Light positioned left or right to illuminate sideways
+# Expected: Sphere properly illuminated after translation
+
+A 0.2 255,255,255
+C 3,2,8 -0.3,-0.2,-0.9 70
+L 8,2,5 0.8 255,255,255
+
+sp 3,2,0 2 50,150,255

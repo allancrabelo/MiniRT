@@ -1,0 +1,12 @@
+# Translations Test: Two spheres with translation
+# Two spheres at coordinates {0, 0, 0}, camera facing them
+# One sphere translated parallel to camera direction
+# Translation distance greater than sphere diameter
+# Expected: Both spheres visible without glitching
+
+A 0.2 255,255,255
+C 0,0,10 0,0,-1 70
+L 0,5,10 0.7 255,255,255
+
+sp 0,0,0 1.5 255,0,0
+sp 0,0,-4 1.5 0,0,255

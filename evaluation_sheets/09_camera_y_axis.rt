@@ -1,0 +1,12 @@
+# Camera Position Test 2: Camera along y axis
+# Camera extending along y axis pointed towards {0, 0, 0}
+# Random scene
+# Expected: Scene visible without glitching
+
+A 0.2 255,255,255
+C 0,10,0 0,-0.707,-0.707 70
+L 5,10,5 0.7 255,255,255
+
+sp 0,0,0 2 255,0,0
+cy -1,0,2 1,0,0 0.8 3 0,255,0
+pl -3,0,0 1,0,0 150,150,150
