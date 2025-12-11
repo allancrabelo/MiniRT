@@ -19,6 +19,9 @@
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 
+// Program status
+# define SUCCESS -1
+
 // Window Macros:
 # define WIN_W 1280
 # define WIN_H 720

@@ -1,5 +1,5 @@
 .vscode/
-miniRT
+minirt
 minilibx/
 libft.a
 *.o

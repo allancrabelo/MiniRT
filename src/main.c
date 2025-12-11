@@ -1,5 +1,15 @@
 #include "minirt.h"
 
+/**
+ * @brief Initializes the scene from a configuration file.
+ * 
+ * Validates the file, opens it, parses its contents, and sets initial
+ * program states including camera position and rendering quality.
+ * 
+ * @param mini Pointer to the main program structure.
+ * @param file Path to the .rt configuration file.
+ * @return int SUCCESS on completion, error code if file operations fail.
+ */
 int	file_init(t_rt *mini, char *file)
 {
 	int	fd;
@@ -15,6 +25,15 @@ int	file_init(t_rt *mini, char *file)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Initializes the MLX graphics system and creates a window.
+ * 
+ * Sets up the MLX context, creates a window and image buffer,
+ * renders the scene, and registers event hooks for window management.
+ * 
+ * @param mini Pointer to the main program structure.
+ * @return int SUCCESS on completion, error code if MLX initialization fails.
+ */
 static int	start_mlx(t_rt *mini)
 {
 	mini->mlx_ptr = mlx_init();
@@ -35,6 +54,16 @@ static int	start_mlx(t_rt *mini)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Main entry point for the MiniRT ray tracing program.
+ * 
+ * Initializes the program structure, parses command line arguments,
+ * starts the graphics system, and manages execution flow.
+ * 
+ * @param argc Argument count. Expected: 2 (program + .rt file).
+ * @param argv Argument vector. argv[1] should be a valid .rt scene file.
+ * @return int EXIT_SUCCESS on completion, EXIT_FAILURE on initialization error.
+ */
 int	main(int argc, char **argv)
 {
 	t_rt	*mini;
@@ -43,8 +72,7 @@ int	main(int argc, char **argv)
 	if (!mini)
 		return (EXIT_FAILURE);
 	ft_err_handler(mini, program_parser(mini, argc, argv));
-	//initializer
 	ft_err_handler(mini, start_mlx(mini));
-	ft_err_handler(mini, -1);
+	ft_err_handler(mini, SUCCESS);
 	return (EXIT_SUCCESS);
 }
