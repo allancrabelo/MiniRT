@@ -31,6 +31,12 @@
 # define EPSILON_SMALL 1e-6
 # define EPSILON_TINY 1e-8
 
+// Hooks defines:
+#define CAMERA_SPEED 2.0
+#define ROTATE_ANGLE 0.1
+#define QUALITY_FAST 4
+#define QUALITY_HIGH 1
+
 // Structures
 typedef enum e_token_type
 {
@@ -137,7 +143,7 @@ t_color		calculate_lighting(t_rt *mini, t_hit hit, t_ray ray);
 int			create_trgb(int t, int r, int g, int b);
 void		img_pix_put(t_img *img, int x, int y, int color);
 
-// Color operations
+// [Color operations]:
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_mult(t_color c, float scalar);
 t_color		color_mult_color(t_color c1, t_color c2);
@@ -156,7 +162,40 @@ int			sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
 int			plane_parser(t_rt *mini, char **parameters, t_obj *objects);
 int			cylinder_parser(t_rt *mini, char **parameters, t_obj *objects);
 
-// Garbage collector and error handler
+// [Hooks]:
+int			key_hook(int keysym, void *param);
+void		handle_numpad_keys(t_rt *mini, int keysym);
+void		handle_special_keys(t_rt *mini, int keysym);
+void		update_and_render(t_rt *mini, int quality);
+int			close_hook(void *param);
+t_vector	rotate_vector_y(t_vector v, float angle);
+void		rotate_camera(t_rt *mini, int direction);
+void		move_camera_forward_back(t_rt *mini, int direction);
+void		move_camera_strafe(t_rt *mini, int direction);
+void		move_camera_vertical(t_rt *mini, int direction);
+
+// [Errors]:
+int			ft_err_handler(t_rt *mini, int code);
+void		err_message_parsing(int code);
+void		err_message_mlx(int code);
+void		err_message_elements(int code);
+void		err_message_type(int code);
+void		err_message(int code);
+
+// [Extras]:
+void		handle_numpad_camera(t_rt *mini, int keysym);
+void		set_camera_another_view(t_rt *mini);
+t_camera	create_preset_camera(t_vector pos, t_vector orientation);
+void		set_camera_front(t_rt *mini);
+void		set_camera_front_bottom(t_rt *mini);
+void		set_camera_right(t_rt *mini);
+void		set_camera_left(t_rt *mini);
+void		set_camera_top(t_rt *mini);
+void		set_camera_back(t_rt *mini);
+void		set_camera_isometric(t_rt *mini);
+void		set_camera_alt_isometric(t_rt *mini);
+
+// [Garbage collector and error handler]:
 void		*gc_calloc(t_rt *mini, size_t size);
 void		gc_free_one(t_rt *rt, void *ptr);
 void		gc_free_all(t_rt *rt);

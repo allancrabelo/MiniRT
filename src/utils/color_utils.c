@@ -1,5 +1,15 @@
 #include "minirt.h"
 
+/**
+ * @brief Parses color string(s) for objects with optional secondary colors.
+ * 
+ * Supports single color or primary;secondary color format.
+ * 
+ * @param str Color string(s) to parse.
+ * @param primary_color Primary color structure to populate.
+ * @param second_color Secondary color structure to populate (optional).
+ * @return int SUCCESS if parsing succeeds, FAILURE if format is invalid.
+ */
 int	colors_parser(char *str, t_color *primary_color, t_color *second_color)
 {
 	char	**colors;
@@ -23,6 +33,15 @@ int	colors_parser(char *str, t_color *primary_color, t_color *second_color)
 	return (ret);
 }
 
+/**
+ * @brief Parses a single RGB color string.
+ * 
+ * Converts "R,G,B" string to normalized color values (0-1 range).
+ * 
+ * @param str RGB color string in format "255,255,255".
+ * @param color Color structure to populate.
+ * @return int SUCCESS if parsing succeeds, FAILURE if format is invalid.
+ */
 int	color_parser(char *str, t_color *color)
 {
 	int		i;

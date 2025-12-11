@@ -51,4 +51,8 @@
 # define INVERT			"\033[7m"
 # define HIDDEN			"\033[8m"
 
+// Text to MLX:
+# define xWHITE 0xFFFFFF
+# define xYELLOW 0xFFFF00
+# define xCYAN 0x00FFFF
 #endif

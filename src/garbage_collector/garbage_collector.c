@@ -1,7 +1,14 @@
 #include "minirt.h"
 
-// Allocates the requested memory and
-// redirects the pointer to the garbage collector
+/**
+ * @brief Allocates zero-initialized memory with garbage collection.
+ * 
+ * Allocates memory and adds it to the garbage collection list.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param size Size in bytes to allocate.
+ * @return void* Pointer to allocated memory, or NULL on failure.
+ */
 void	*gc_calloc(t_rt *mini, size_t size)
 {
 	void	*ptr;
@@ -22,7 +29,15 @@ void	*gc_calloc(t_rt *mini, size_t size)
 	return (ptr);
 }
 
-// Used to free a single allocated memory pointer
+/**
+ * @brief Frees a specific pointer from garbage collection.
+ * 
+ * Searches for and removes a specific pointer from the GC list,
+ * freeing both the pointer and its GC node.
+ * 
+ * @param rt Pointer to main program structure containing GC list.
+ * @param ptr Pointer to free from garbage collection.
+ */
 void	gc_free_one(t_rt *rt, void *ptr)
 {
 	t_gc	*cur;
@@ -48,7 +63,13 @@ void	gc_free_one(t_rt *rt, void *ptr)
 	}
 }
 
-// Used to free all allocated memory
+/**
+ * @brief Frees all garbage-collected memory.
+ * 
+ * Iterates through the garbage collection list and frees all allocated memory.
+ * 
+ * @param rt Pointer to main program structure containing GC list.
+ */
 void	gc_free_all(t_rt *rt)
 {
 	t_gc	*cur;

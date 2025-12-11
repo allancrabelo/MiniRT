@@ -1,5 +1,12 @@
 #include "minirt.h"
 
+/**
+ * @brief Calculates cross product of two vectors.
+ * 
+ * @param a First vector.
+ * @param b Second vector.
+ * @return t_vector Cross product vector.
+ */
 t_vector	vector_cross(t_vector a, t_vector b)
 {
 	t_vector	result;
@@ -10,6 +17,12 @@ t_vector	vector_cross(t_vector a, t_vector b)
 	return (result);
 }
 
+/**
+ * @brief Normalizes a vector to unit length.
+ * 
+ * @param v Vector to normalize.
+ * @return t_vector Normalized vector, or original if length is zero.
+ */
 t_vector	vector_normalize(t_vector v)
 {
 	float		len;

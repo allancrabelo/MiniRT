@@ -1,5 +1,11 @@
 #include "minirt.h"
 
+/**
+ * @brief Converts string to clamped color value (0-255).
+ * 
+ * @param str String containing integer value.
+ * @return int Clamped color value between 0 and 255.
+ */
 int	ft_atoc(char *str)
 {
 	int	c;
@@ -12,6 +18,14 @@ int	ft_atoc(char *str)
 	return (c);
 }
 
+/**
+ * @brief Converts string to floating point number.
+ * 
+ * Supports negative numbers and decimal points.
+ * 
+ * @param str String to convert (e.g., "3.14", "-2.5").
+ * @return float Converted floating point value.
+ */
 float	ft_atof(char *str)
 {
 	float	sum;

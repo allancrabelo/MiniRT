@@ -1,5 +1,10 @@
 #include "minirt.h"
 
+/**
+ * @brief Frees a null-terminated array of strings.
+ * 
+ * @param arr Array to free.
+ */
 void	free_array(char **arr)
 {
 	int	i;
@@ -15,6 +20,12 @@ void	free_array(char **arr)
 	free(arr);
 }
 
+/**
+ * @brief Calculates the size of a null-terminated array.
+ * 
+ * @param arr Array to measure.
+ * @return int Number of elements in the array.
+ */
 int	array_size(char	**arr)
 {
 	int	size;

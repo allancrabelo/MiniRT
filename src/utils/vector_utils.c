@@ -1,5 +1,11 @@
 #include "minirt.h"
 
+/**
+ * @brief Calculates the length (magnitude) of a vector.
+ * 
+ * @param vector Input vector.
+ * @return float Length of the vector.
+ */
 float	vector_length(t_vector vector)
 {
 	float	len_x;

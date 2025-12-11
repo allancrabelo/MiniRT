@@ -23,8 +23,10 @@ VPATH		:=	src \
 SRCSLIST	:=	main \
 				camera \
 				error_handler \
+				errors \
 				garbage_collector \
 				hooks \
+				key_hooks \
 				light \
 				objects \
 				element_parser \
@@ -47,6 +49,8 @@ SRCSLIST	:=	main \
 				vector_math2 \
 				controls_help \
 				camera_presets \
+				camera_presets_especials \
+				numpad_handler \
 
 SRCS		:= $(addsuffix .c, ${SRCSLIST})
 

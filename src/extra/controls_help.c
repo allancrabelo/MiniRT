@@ -1,14 +1,28 @@
 #include "minirt.h"
 
-#define xWHITE 0xFFFFFF
-#define xYELLOW 0xFFFF00
-#define xCYAN 0x00FFFF
-
+/**
+ * @brief Draws a single line of text on the window.
+ * 
+ * Uses MLX's string rendering function to draw text at specified position.
+ * 
+ * @param mini Pointer to main program structure.
+ * @param y Vertical position for text.
+ * @param text String to display.
+ * @param color Color of the text.
+ */
 static void	draw_text_line(t_rt *mini, int y, char *text, int color)
 {
 	mlx_string_put(mini->mlx_ptr, mini->win_ptr, 30, y, color, text);
 }
 
+/**
+ * @brief Draws camera preset and function information in help overlay.
+ * 
+ * Renders the second part of help text including numpad presets
+ * and other functions.
+ * 
+ * @param mini Pointer to main program structure.
+ */
 static void	draw_camera_overlay(t_rt *mini)
 {
 	draw_text_line(mini, 280, "NUMPAD - PRESET CAMERAS:", xCYAN);
@@ -28,6 +42,13 @@ static void	draw_camera_overlay(t_rt *mini)
 	draw_text_line(mini, 550, "  ESC        - Exit program", xWHITE);
 }
 
+/**
+ * @brief Draws the help overlay with control information.
+ * 
+ * Renders text instructions for camera controls and program functions.
+ * 
+ * @param mini Pointer to main program structure.
+ */
 void	draw_help_overlay(t_rt *mini)
 {
 	if (!mini->show_help)
@@ -46,6 +67,13 @@ void	draw_help_overlay(t_rt *mini)
 	draw_camera_overlay(mini);
 }
 
+/**
+ * @brief Toggles the controls help overlay.
+ * 
+ * Switches between showing and hiding the help information.
+ * 
+ * @param mini Pointer to main program structure.
+ */
 void	toggle_controls_help(t_rt *mini)
 {
 	mini->show_help = !mini->show_help;
