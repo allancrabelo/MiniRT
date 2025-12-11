@@ -1,5 +1,10 @@
 #include "minirt.h"
 
+/**
+ * @brief Creates a default miss hit result.
+ * 
+ * @return t_hit Miss hit structure.
+ */
 static t_hit	create_miss(void)
 {
 	t_hit	hit;
@@ -10,40 +15,13 @@ static t_hit	create_miss(void)
 	return (hit);
 }
 
-t_hit	intersect_sphere(t_ray ray, t_obj *obj)
-{
-	t_vector	oc;
-	float		a;
-	float		b;
-	float		c;
-	float		discriminant;
-	float		t;
-	t_hit		hit;
-
-	oc = vector_sub(ray.origin, obj->objects.sphere.coordinates);
-	a = vector_dot(ray.direction, ray.direction);
-	b = 2.0 * vector_dot(oc, ray.direction);
-	c = vector_dot(oc, oc) - (obj->objects.sphere.diameter / 2.0)
-		* (obj->objects.sphere.diameter / 2.0);
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return (create_miss());
-	t = (-b - sqrt(discriminant)) / (2.0 * a);
-	if (t < EPSILON)
-		t = (-b + sqrt(discriminant)) / (2.0 * a);
-	if (t < EPSILON)
-		return (create_miss());
-	hit.hit = true;
-	hit.t = t;
-	hit.point = vector_add(ray.origin, vector_mult(ray.direction, t));
-	hit.normal = vector_normalize(vector_sub(hit.point,
-				obj->objects.sphere.coordinates));
-	if (vector_dot(hit.normal, ray.direction) > 0)
-		hit.normal = vector_mult(hit.normal, -1);
-	hit.object = obj;
-	return (hit);
-}
-
+/**
+ * @brief Calculates intersection between ray and plane.
+ * 
+ * @param ray Ray to test.
+ * @param obj Plane object.
+ * @return t_hit Plane intersection result.
+ */
 t_hit	intersect_plane(t_ray ray, t_obj *obj)
 {
 	float		denom;
@@ -66,4 +44,71 @@ t_hit	intersect_plane(t_ray ray, t_obj *obj)
 		hit.normal = vector_mult(hit.normal, -1);
 	hit.object = obj;
 	return (hit);
+}
+
+/**
+ * @brief Computes quadratic equation parameters for sphere intersection.
+ * 
+ * @param ray Ray to test.
+ * @param obj Sphere object.
+ * @return t_quadratic_params Quadratic coefficients and discriminant.
+ */
+static t_quadratic_params	get_sphere_params(t_ray ray, t_obj *obj)
+{
+	t_quadratic_params	params;
+	t_vector			oc;
+
+	oc = vector_sub(ray.origin, obj->objects.sphere.coordinates);
+	params.a = vector_dot(ray.direction, ray.direction);
+	params.b = 2.0 * vector_dot(oc, ray.direction);
+	params.c = vector_dot(oc, oc) - (obj->objects.sphere.diameter / 2.0)
+		* (obj->objects.sphere.diameter / 2.0);
+	params.discriminant = params.b * params.b - 4 * params.a * params.c;
+	return (params);
+}
+
+/**
+ * @brief Creates hit information from sphere intersection.
+ * 
+ * @param ray Ray that intersected.
+ * @param t Intersection distance.
+ * @param obj Sphere object.
+ * @return t_hit Complete hit information.
+ */
+static t_hit	calculate_hit_info(t_ray ray, float t, t_obj *obj)
+{
+	t_hit	hit;
+
+	hit.hit = true;
+	hit.t = t;
+	hit.point = vector_add(ray.origin, vector_mult(ray.direction, t));
+	hit.normal = vector_normalize(vector_sub(hit.point,
+				obj->objects.sphere.coordinates));
+	if (vector_dot(hit.normal, ray.direction) > 0)
+		hit.normal = vector_mult(hit.normal, -1);
+	hit.object = obj;
+	return (hit);
+}
+
+/**
+ * @brief Calculates intersection between ray and sphere.
+ * 
+ * @param ray Ray to test.
+ * @param obj Sphere object.
+ * @return t_hit Sphere intersection result.
+ */
+t_hit	intersect_sphere(t_ray ray, t_obj *obj)
+{
+	t_quadratic_params	params;
+	float				t;
+
+	params = get_sphere_params(ray, obj);
+	if (params.discriminant < 0)
+		return (create_miss());
+	t = (-params.b - sqrt(params.discriminant)) / (2.0 * params.a);
+	if (t < EPSILON)
+		t = (-params.b + sqrt(params.discriminant)) / (2.0 * params.a);
+	if (t < EPSILON)
+		return (create_miss());
+	return (calculate_hit_info(ray, t, obj));
 }

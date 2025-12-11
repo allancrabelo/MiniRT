@@ -36,15 +36,20 @@ SRCSLIST	:=	main \
 				shapes_parser \
 				vector_parser \
 				render \
+				render_extras \
 				intersect \
 				intersect_cylinder \
+				intersect_cylinder_utils \
+				intersect_cylinder_extras \
 				ray_trace \
+				ray_trace_extra \
 				array_utils \
 				color_utils \
 				color_ops \
 				conversion_utils \
 				type_utils \
 				vector_utils \
+				render_utils \
 				vector_math \
 				vector_math2 \
 				controls_help \

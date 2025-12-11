@@ -121,6 +121,9 @@ int			is_ulong(char *str);
 int			ft_atoc(char *str);
 int			is_float(char *str);
 float		vector_length(t_vector vector);
+t_camera_basis	calculate_camera_basis(t_vector camera_orientation);
+t_vector	calculate_pixel_pos(float x, float y, t_viewport vp);
+t_viewport	calculate_viewport(t_rt *mini);
 
 // [Vector Math]:
 t_vector	vector_add(t_vector a, t_vector b);
@@ -142,6 +145,37 @@ t_hit		intersect_cylinder(t_ray ray, t_obj *obj);
 t_color		calculate_lighting(t_rt *mini, t_hit hit, t_ray ray);
 int			create_trgb(int t, int r, int g, int b);
 void		img_pix_put(t_img *img, int x, int y, int color);
+t_hit		create_miss_hit(void);
+float		get_radius(t_obj *obj);
+bool		is_valid_t(float t);
+bool		check_cylinder_caps(t_ray ray, t_obj *obj,
+			float t, t_vector normal);
+t_hit		create_cap_hit(t_ray ray, t_obj *obj, float t, t_vector axis);
+bool		check_cap_distance(t_ray ray, t_obj *obj,
+		t_vector cap_center, float t);
+void		compute_cylinder_normal(t_hit *hit, t_ray ray, t_obj *obj);
+t_hit		intersect_cylinder(t_ray ray, t_obj *obj);
+t_hit		intersect_cap(t_ray ray, t_obj *obj,
+		float cap_height, t_vector axis);
+void		init_quadratic_params(t_ray ray, t_obj *obj, float params[3]);
+float		solve_quadratic(float params[3], t_ray ray,
+		t_obj *obj, t_vector axis);
+t_hit		cylinder_body_intersect(t_ray ray, t_obj *obj);
+t_vector	calculate_cylinder_normal(t_hit *hit, t_obj *obj);
+t_hit		check_object_intersection(t_ray ray, t_obj *obj);
+t_hit		intersect_scene(t_rt *mini, t_ray ray);
+t_color		calculate_ambient(t_rt *mini, t_hit hit);
+t_vector	adjust_shadow_origin(t_vector point, t_vector normal,
+		t_vector light_dir);
+bool		is_in_shadow(t_rt *mini, t_vector point, t_light *light,
+		t_vector normal);
+t_color		ray_color(t_rt *mini, t_ray ray);
+t_color		calculate_lighting(t_rt *mini, t_hit hit, t_ray ray);
+t_vector	get_facing_normal(t_vector normal, t_vector view_dir);
+t_color		process_light(t_rt *mini, t_hit hit, t_light *light,
+		t_vector normal);
+t_color		calculate_diffuse(t_light *light, t_hit hit,
+		t_vector normal, t_vector light_dir);
 
 // [Color operations]:
 t_color		color_add(t_color c1, t_color c2);

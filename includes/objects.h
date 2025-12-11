@@ -160,4 +160,35 @@ typedef struct s_hit
 	bool		hit;
 }	t_hit;
 
+typedef struct s_quadratic_params
+{
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+}	t_quadratic_params;
+
+typedef struct s_viewport
+{
+	float	aspect_ratio;
+	float	fov_rad;
+	float	height;
+	float	width;
+}	t_viewport;
+
+typedef struct s_camera_basis
+{
+	t_vector	forward;
+	t_vector	right;
+	t_vector	up;
+}	t_camera_basis;
+
+typedef struct s_pixel_block
+{
+	int	x;
+	int	y;
+	int	color;
+	int	step;
+}	t_pixel_block;
+
 #endif
