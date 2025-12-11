@@ -1,0 +1,10 @@
+# Basic Shapes Test 1: Sphere at origin
+# A sphere at coordinates {0, 0, 0}
+# Camera facing the sphere
+# Expected: Sphere visible without glitching
+
+A 0.2 255,255,255
+C 0,0,5 0,0,-1 70
+L 0,10,5 0.7 255,255,255
+
+sp 0,0,0 2 255,0,0

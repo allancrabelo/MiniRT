@@ -1,0 +1,10 @@
+# Basic Shapes Test 3: Cylinder along y axis
+# A cylinder extending along the y axis
+# Camera facing the cylinder
+# Expected: Cylinder visible without glitching
+
+A 0.2 255,255,255
+C 5,0,0 -1,0,0 70
+L 5,5,0 0.7 255,255,255
+
+cy 0,0,0 0,1,0 1 4 0,0,255

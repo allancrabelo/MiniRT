@@ -140,7 +140,6 @@ typedef struct s_obj
 	float			refractive_index;
 	float			pattern_scale;
 	int				pattern_type;
-	//t_bool????
 	bool			has_bump;
 	t_img			bump;
 	bool			has_texture;

@@ -1,0 +1,10 @@
+# Brightness Test 1: Sphere with side lighting
+# Sphere at {0, 0, 0}, camera facing sphere
+# Light positioned left or right to illuminate sideways
+# Expected: Sphere visible, illuminated without glitching
+
+A 0.2 255,255,255
+C 0,0,8 0,0,-1 70
+L 5,0,5 0.8 255,255,255
+
+sp 0,0,0 2 255,50,50

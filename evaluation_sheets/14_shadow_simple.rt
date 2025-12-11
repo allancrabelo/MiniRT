@@ -1,0 +1,12 @@
+# Shadow Test 1: Sphere shadow on plane
+# Vertical light, sphere and plane
+# Light positioned to create sphere shadow on plane
+# Camera aside to see sphere, plane and shadow
+# Expected: Shadow properly displayed without glitching
+
+A 0.1 255,255,255
+C 8,3,8 -0.7,-0.25,-0.7 70
+L 0,10,0 0.9 255,255,255
+
+pl 0,-3,0 0,1,0 200,200,200
+sp 0,0,0 2 255,50,50

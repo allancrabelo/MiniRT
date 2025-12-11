@@ -1,0 +1,11 @@
+# Rotations Test: Cylinder with 90° rotation
+# Cylinder extending along y axis
+# Camera facing the cylinder
+# 90° rotation (PI/2) along z axis
+# Expected: Cylinder visible without glitching
+
+A 0.2 255,255,255
+C 5,0,0 -1,0,0 70
+L 5,5,0 0.7 255,255,255
+
+cy 0,0,0 1,0,0 1 4 0,255,0
