@@ -25,21 +25,21 @@ static void	draw_text_line(t_rt *mini, int y, char *text, int color)
  */
 static void	draw_camera_overlay(t_rt *mini)
 {
-	draw_text_line(mini, 280, "NUMPAD - PRESET CAMERAS:", xCYAN);
-	draw_text_line(mini, 300, "  1          - Front view", xWHITE);
-	draw_text_line(mini, 320, "  2          - Front-bottom view", xWHITE);
-	draw_text_line(mini, 340, "  3          - Right side view", xWHITE);
-	draw_text_line(mini, 360, "  4          - Left side view", xWHITE);
-	draw_text_line(mini, 380, "  5          - Top view", xWHITE);
-	draw_text_line(mini, 400, "  6          - Back view", xWHITE);
-	draw_text_line(mini, 420, "  7          - Isometric view", xWHITE);
-	draw_text_line(mini, 440, "  8          - Alt isometric view", xWHITE);
-	draw_text_line(mini, 470, "OTHER FUNCTIONS:", xCYAN);
+	draw_text_line(mini, 280, "NUMPAD - PRESET CAMERAS:", XCYAN);
+	draw_text_line(mini, 300, "  1          - Front view", XWHITE);
+	draw_text_line(mini, 320, "  2          - Front-bottom view", XWHITE);
+	draw_text_line(mini, 340, "  3          - Right side view", XWHITE);
+	draw_text_line(mini, 360, "  4          - Left side view", XWHITE);
+	draw_text_line(mini, 380, "  5          - Top view", XWHITE);
+	draw_text_line(mini, 400, "  6          - Back view", XWHITE);
+	draw_text_line(mini, 420, "  7          - Isometric view", XWHITE);
+	draw_text_line(mini, 440, "  8          - Alt isometric view", XWHITE);
+	draw_text_line(mini, 470, "OTHER FUNCTIONS:", XCYAN);
 	draw_text_line(mini, 490, "  R          - Reset camera to initial position",
-		xWHITE);
-	draw_text_line(mini, 510, "  Q          - High quality render", xWHITE);
-	draw_text_line(mini, 530, "  TAB        - Show/Hide this help", xWHITE);
-	draw_text_line(mini, 550, "  ESC        - Exit program", xWHITE);
+		XWHITE);
+	draw_text_line(mini, 510, "  Q          - High quality render", XWHITE);
+	draw_text_line(mini, 530, "  TAB        - Show/Hide this help", XWHITE);
+	draw_text_line(mini, 550, "  ESC        - Exit program", XWHITE);
 }
 
 /**
@@ -53,17 +53,17 @@ void	draw_help_overlay(t_rt *mini)
 {
 	if (!mini->show_help)
 		return ;
-	draw_text_line(mini, 30, "===== MINIRT - CONTROLS =====", xYELLOW);
-	draw_text_line(mini, 60, "CAMERA MOVEMENT:", xCYAN);
-	draw_text_line(mini, 80, "  W          - Move forward", xWHITE);
-	draw_text_line(mini, 100, "  S          - Move backward", xWHITE);
-	draw_text_line(mini, 120, "  A          - Strafe left (lateral)", xWHITE);
-	draw_text_line(mini, 140, "  D          - Strafe right (lateral)", xWHITE);
-	draw_text_line(mini, 170, "ARROW KEYS:", xCYAN);
-	draw_text_line(mini, 190, "  Arrow UP   - Move up (vertical)", xWHITE);
-	draw_text_line(mini, 210, "  Arrow DOWN - Move down (vertical)", xWHITE);
-	draw_text_line(mini, 230, "  Arrow LEFT - Rotate camera left", xWHITE);
-	draw_text_line(mini, 250, "  Arrow RIGHT- Rotate camera right", xWHITE);
+	draw_text_line(mini, 30, "===== MINIRT - CONTROLS =====", XYELLOW);
+	draw_text_line(mini, 60, "CAMERA MOVEMENT:", XCYAN);
+	draw_text_line(mini, 80, "  W          - Move forward", XWHITE);
+	draw_text_line(mini, 100, "  S          - Move backward", XWHITE);
+	draw_text_line(mini, 120, "  A          - Strafe left (lateral)", XWHITE);
+	draw_text_line(mini, 140, "  D          - Strafe right (lateral)", XWHITE);
+	draw_text_line(mini, 170, "ARROW KEYS:", XCYAN);
+	draw_text_line(mini, 190, "  Arrow UP   - Move up (vertical)", XWHITE);
+	draw_text_line(mini, 210, "  Arrow DOWN - Move down (vertical)", XWHITE);
+	draw_text_line(mini, 230, "  Arrow LEFT - Rotate camera left", XWHITE);
+	draw_text_line(mini, 250, "  Arrow RIGHT- Rotate camera right", XWHITE);
 	draw_camera_overlay(mini);
 }
 

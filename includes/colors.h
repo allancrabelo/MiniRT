@@ -51,7 +51,7 @@
 # define HIDDEN			"\033[8m"
 
 // Text to MLX:
-# define xWHITE 0xFFFFFF
-# define xYELLOW 0xFFFF00
-# define xCYAN 0x00FFFF
+# define XWHITE 0xFFFFFF
+# define XYELLOW 0xFFFF00
+# define XCYAN 0x00FFFF
 #endif
