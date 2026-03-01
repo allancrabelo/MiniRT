@@ -105,7 +105,9 @@ clean:
 	@echo "${RED}Deleting object files ...${RESET}"
 	@${RM} -r ${OBJSDIR}
 	@make -C ${LIBFTDIR} clean --no-print-directory --quiet
-	@make -C ${MLX_DIR} clean --no-print-directory --quiet
+	@if [ -d "${MLX_DIR}" ]; then \
+		make -C "${MLX_DIR}" clean --no-print-directory --quiet; \
+	fi
 
 fclean: clean
 	@if [ -f ${NAME} ]; then \
