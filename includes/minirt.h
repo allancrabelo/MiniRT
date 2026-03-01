@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mqueiros <mqueiros@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:49:31 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/12/13 17:34:10 by aaugusto         ###   ########.fr       */
+/*   Updated: 2026/03/01 16:10:33 by mqueiros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "colors.h"
 # include "error.h"
 # include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 // Program status
 # define SUCCESS -1
@@ -202,11 +202,11 @@ int				validate_color_component(int value);
 int				validate_normalized_component(float value);
 int				validate_normalized_vector(t_vector vec);
 
-// [Camera]:	
+// [Camera]:
 t_vector		*camera_normalizer(t_vector *vector);
 int				camera_parser(t_rt *mini, char *line, int i);
 
-// [Light]:	
+// [Light]:
 t_light			*light_generator(t_rt *mini);
 
 // [Objects]:
@@ -215,7 +215,7 @@ int				sphere_parser(t_rt *mini, char **parameters, t_obj *objects);
 int				plane_parser(t_rt *mini, char **parameters, t_obj *objects);
 int				cylinder_parser(t_rt *mini, char **parameters, t_obj *objects);
 
-// [Hooks]:	
+// [Hooks]:
 int				key_hook(int keysym, void *param);
 void			handle_numpad_keys(t_rt *mini, int keysym);
 void			handle_special_keys(t_rt *mini, int keysym);
@@ -227,7 +227,7 @@ void			move_camera_forward_back(t_rt *mini, int direction);
 void			move_camera_strafe(t_rt *mini, int direction);
 void			move_camera_vertical(t_rt *mini, int direction);
 
-// [Errors]:	
+// [Errors]:
 int				ft_err_handler(t_rt *mini, int code);
 void			err_message_parsing(int code);
 void			err_message_mlx(int code);
@@ -236,7 +236,7 @@ void			err_message_type(int code);
 void			err_message(int code);
 void			err_message_elements_ranges(int code);
 
-// [Extras]:	
+// [Extras]:
 void			handle_numpad_camera(t_rt *mini, int keysym);
 void			set_camera_another_view(t_rt *mini);
 t_camera		create_preset_camera(t_vector pos, t_vector orientation);

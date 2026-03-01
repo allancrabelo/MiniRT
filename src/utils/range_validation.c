@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   range_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mqueiros <mqueiros@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 17:00:00 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/12/13 17:00:01 by aaugusto         ###   ########.fr       */
+/*   Updated: 2026/03/01 16:12:23 by mqueiros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Validates ratio is in range [0.0, 1.0].
- * 
+ *
  * @param ratio The ratio value to validate.
  * @return int SUCCESS if valid, FAILURE otherwise.
  */
@@ -27,20 +27,20 @@ int	validate_ratio(float ratio)
 
 /**
  * @brief Validates FOV is in range [0, 180].
- * 
+ *
  * @param fov The field of view value to validate.
  * @return int SUCCESS if valid, FAILURE otherwise.
  */
 int	validate_fov(size_t fov)
 {
-	if (fov < 0 || fov > 180)
+	if (fov > 180)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
 /**
  * @brief Validates RGB color component is in range [0, 255].
- * 
+ *
  * @param value The color component value to validate.
  * @return int SUCCESS if valid, FAILURE otherwise.
  */
@@ -53,7 +53,7 @@ int	validate_color_component(int value)
 
 /**
  * @brief Validates vector component is in range [-1.0, 1.0].
- * 
+ *
  * @param value The vector component to validate.
  * @return int SUCCESS if valid, FAILURE otherwise.
  */
@@ -66,7 +66,7 @@ int	validate_normalized_component(float value)
 
 /**
  * @brief Validates all components of normalized vector are in [-1.0, 1.0].
- * 
+ *
  * @param vec The vector to validate.
  * @return int SUCCESS if valid, FAILURE otherwise.
  */

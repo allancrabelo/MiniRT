@@ -1,4 +1,4 @@
-NAME		:= minirt
+NAME		:= miniRT
 CC			:= cc
 RM			:= rm -f
 
@@ -66,7 +66,7 @@ OBJS		:= ${SRCS:%.c=${OBJSDIR}%.o}
 LIBFTDIR	:= ./libft/
 LIBFT		:= ${LIBFTDIR}libft.a
 
-MLX_DIR		:= ./minilibx/
+MLX_DIR		:= ./minilibx-linux/
 MLX_LIB		:= ${MLX_DIR}libmlx.a
 
 
