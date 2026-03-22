@@ -1,3 +1,9 @@
+![42](https://img.shields.io/badge/-42-black?style=for-the-badge&logo=42&logoColor=white)
+
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![Bash Script](https://img.shields.io/badge/bash_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)[![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)]([https://seuprojeto.atlassian.net/jira/software/projects/PROJKEY/boards/1](https://allanaugustocarneirorabelo.atlassian.net/jira/software/projects/SCRUM/boards/1?jql=))
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a6c2e6fb-21e7-47c9-8e94-026527d5c304" />
+
 *This project has been created as part of the 42 curriculum by mqueiros, aaugusto.*
 
 ---
